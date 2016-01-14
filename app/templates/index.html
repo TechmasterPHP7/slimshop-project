@@ -1,0 +1,194 @@
+{% extends 'layout.html' %}
+{% block content %}
+    {% if new_products %}
+    <section id="slider"><!--slider-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            {% for new in new_products %}
+                            <ul class="bxslider">
+                                <div class="col-sm-6">
+                                    <br/>
+                                    <h1>SẢN PHẨM MỚI</h1><br/>
+                                    <h2>{{ new.title }}</h2>
+                                    <h2>{{ new.price | number_format ~ " đ" }}</h2>
+                                    <button type="button" class="btn btn-default get" href="/products/{{ new.slug }}">Get it now</button>
+                                </div>
+                                <div class="col-sm-6">
+                                    <li><img src="{{ new.image }}" clas s="girl img-responsive" alt="" /></li>
+                                </div>
+                            </ul>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section><!--/slider-->
+    {% endif %}
+
+    {#{% block content_with_slider %}#}
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="left-sidebar">
+                        {#{{ path_for('left_sidebar', cat)#}
+                        {% include 'left_sidebar.html' %}
+                    </div>
+                 </div>
+
+    {#<div class="col-sm-9 padding-right">#}
+
+    {#{% if slider %}#}
+    {#<div class="category-tab"><!--category-tab-->#}
+    {#<div class="col-sm-12">#}
+    {#<ul class="nav nav-tabs">#}
+    {#{% if news %}#}
+    {#<li class="active"><a href="#leatherman" data-toggle="tab">Sản phẩm mới</a>#}
+    {#</li>{% endif %}#}
+    {#{% if olds %}#}
+    {#<li><a href="#wenger" data-toggle="tab">Sản phẩm cũ</a></li>{% endif %}#}
+    {#</ul>#}
+    {#</div>#}
+    {#<div class="tab-content">#}
+
+    {#{% if news %}#}
+    {#<div class="tab-pane fade active in" id="leatherman">#}
+    {#{% for product in news %}#}
+    {#<div class="col-sm-3">#}
+    {#<div class="product-image-wrapper">#}
+    {#<div class="single-products">#}
+    {#<div class="productinfo text-center">#}
+    {#<div style="height: 150px">#}
+    {#<img class="cate_img_tag" id="{{ product.id }}"#}
+    {#src="{{ product.image }}" alt=""/>#}
+    {#</div>#}
+
+    {#<h2>{{ product.price | number_format ~ " đ" }}</h2>#}
+
+    {#<p id="{{ product.id }}">{{ product.title|title_length(20,'...',false) }}</p>#}
+    {#<a href="javascript:add_cart({{ product.id }})"#}
+    {#class="btn btn-default add-to-cart"><i#}
+    {#class="fa fa-shopping-cart"></i>Cho vào giỏ hàng</a>#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+    {#{% endfor %}#}
+    {#</div>#}
+    {#{% endif %}#}
+
+    {#{% if olds %}#}
+    {#<div class="tab-pane fade" id="wenger">#}
+    {#{% for product in olds %}#}
+    {#<div class="col-sm-3">#}
+    {#<div class="product-image-wrapper">#}
+    {#<div class="single-products">#}
+    {#<div class="productinfo text-center">#}
+    {#<div style="height: 150px">#}
+    {#<img id="{{ product.id }}" class="cate_img_tag"#}
+    {#src="{{ product.image }}" alt=""/>#}
+    {#</div>#}
+
+    {#<h2>{{ product.price | number_format ~ " đ" }}</h2>#}
+
+    {#<p id="{{ product.id }}">{{ product.title|title_length(22,'...',false) }}</p>#}
+    {#<a href="javascript:add_cart({{ product.id }})"#}
+    {#class="btn btn-default add-to-cart"><i#}
+    {#class="fa fa-shopping-cart"></i>Cho vào giỏ hàng</a>#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+    {#{% endfor %}#}
+    {#</div>#}
+    {#{% endif %}#}
+
+    {#</div>#}
+    {#</div><!--/category-tab-->#}
+    {#{% endif %}#}
+
+
+
+    <!--features_items-->
+    {% if features_products %}
+    <div class="features_items">
+
+        <h2 class="title text-center">Sản phẩm nổi bật</h2>
+
+        {% for product in features_products %}
+        <div class="col-sm-3">
+            <div class="product-image-wrapper">
+                <div class="single-products">
+                    <div class="productinfo text-center" id="{{ product.id }}">
+                        <div style="height: 249px">
+                            <img class="feat_img_tag" src="{{ product.image }}" id="{{ product.id }}"/>
+                        </div>
+
+                        <h2>{{ product.price | number_format ~ " đ" }}</h2>
+
+                        <p id="{{ product.id }}">{{ product.title }}</p>
+                        <a href="javascript:add_to_cart({{ product.id }})" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+                    </div>
+                    <div class="product-overlay">
+                        <div class="overlay-content" id="{{ product.id }}">
+
+                            <h2>{{ product.price | number_format ~ " đ" }}</h2>
+
+                            <p id="{{ product.id }}">{{ product.title }}</p>
+                            <a href="javascript:add_cart({{ product.id }})" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <!-- /features_items-->
+    {#<div class="category-tab"><!--category-tab-->#}
+        {#<div class="col-sm-12">#}
+            {#<ul class="nav nav-tabs">#}
+                {#{% for cat in __cates %}#}
+                {#{% if cat.is_Parent == false %}#}
+                {#<li><a href="#{{ cat.id }}" data-toggle="tab">{{ cat.title }}</a></li>#}
+                {#{% endif %}#}
+                {#{% endfor %}#}
+            {#</ul>#}
+        {#</div>#}
+        {#{% for cat in __cates %}#}
+        {#<div class="tab-content">#}
+            {#{% for cat2 in __cates %}#}
+            {#{% if cat2.parent == cat.id %}#}
+            {#<div class="tab-pane fade active in" id="{{ cat.slug }}" >#}
+                {#<div class="col-sm-3">#}
+                    {#<div class="product-image-wrapper">#}
+                        {#<div class="single-products">#}
+                            {#<div class="productinfo text-center">#}
+                                {#<img src="{{ cat2.image }}" alt="" />#}
+                                {#<h2>{{ cat2.price | number_format ~ " đ" }}</h2>#}
+                                {#<p>{{ cat2.title }}</p>#}
+                                {#<a href="javascript:add_cart({{ cat2.id }})" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>#}
+                            {#</div>#}
+
+                        {#</div>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
+            {#{% endif %}#}
+            {#{% endfor %}#}
+        {#</div>#}
+        {#{% endfor %}#}
+    {#</div><!--/category-tab-->#}
+    {#<!-- using widgets  -->#}
+    {#{% include '/widgets/recommend.html' %}#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+    {#</section>#}
+{% endblock %}

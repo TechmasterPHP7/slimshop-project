@@ -1,0 +1,6 @@
+vendor/
+log/*
+cache/*
+public/productimg/
+public/Uploads/
+.idea/

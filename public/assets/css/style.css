@@ -1,0 +1,6 @@
+.product-overlay {
+    background: rgba(0, 0, 0, 0.52);
+}
+.product-overlay .overlay-content {
+    background: rgb(254, 152, 15);
+}

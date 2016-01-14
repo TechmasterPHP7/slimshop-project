@@ -1,0 +1,29 @@
+<h2>Danh mục</h2>
+<div class="panel-group category-products" id="accordian">
+    {% for cat in __cates %}
+        {% if cat.is_Parent %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                        <a href="/products/category/{{ cat.slug }}" >
+                            {{ cat.title }}
+                        </a>
+                        <a data-toggle="collapse" data-parent="#accordian" style="float: right" href="#menu_child{{ loop.index }}">+</a>
+                </h4>
+            </div>
+
+            <div id="menu_child{{ loop.index }}" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <ul>
+                        {% for cat2 in __cates %}
+                            {% if cat2.parent == cat.id %}
+                                <li><a href="/products/category/{{ cat2.slug }}">{{ cat2.title }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    {% endfor %}
+</div>
