@@ -11,10 +11,13 @@ final class HomeController extends BaseController
         $this->logger->info("Home page action dispatched");
 
         $this->flash->addMessage('info', 'Sample flash message');
-
+try {
         $news = $this->em->getRepository('App\Model\Products')->findBy([], ['updatedAt' => 'DESC'], 3);
 
         $feature = $this->em->getRepository('App\Model\Products')->findBy(['feature' => true]);
+} catch (\Exception $e) {
+    echo $e->getMessage(); die;
+}
 
         $this->view->render($response, 'index.html', ['features_products' => $feature, 'new_products' => $news]);
         return $response;
