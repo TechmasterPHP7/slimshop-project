@@ -13,6 +13,15 @@ $app->get('/login', 'App\Controller\UserController:viewLoginPage')
 $app->post('/login', 'App\Controller\UserController:loginPage')
     ->setName('login_page');
 
+$app->get('/products','App\Controller\ProductController:productAction');
+
+$app->get('/products/page/{page}','App\Controller\ProductController:productAction');
+
+$app->get('/products/{slug}', 'App\Controller\ProductController:productDetailAction');
+
+$app->get('/products/category/{slug}','App\Controller\ProductController:productCategoryAction');
+
+$app->get('/products/category/{slug}/page/{page}','App\Controller\ProductController:productCategoryAction');
 
 
 
