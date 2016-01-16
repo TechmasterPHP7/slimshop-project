@@ -8,15 +8,20 @@ final class HomeController extends BaseController
 {
     public function dispatch(Request $request, Response $response, $args)
     {
-        $this->logger->info("Home page action dispatched");
-
-        $this->flash->addMessage('info', 'Sample flash message');
-
+        // slider
         $news = $this->em->getRepository('App\Model\Products')->findBy([], ['updatedAt' => 'DESC'], 3);
 
-        $feature = $this->em->getRepository('App\Model\Products')->findBy(['feature' => true]);
+        // Feature Items
+        $feature = $this->em->getRepository('App\Model\Products')->findBy(['feature' => true], ['id' => 'ASC'], 9);
 
-        $this->view->render($response, 'index.html', ['features_products' => $feature, 'new_products' => $news]);
+        // New item
+        $new_item = $this->em->getRepository('App\Model\Products')->findBy([], ['createdAt' => 'DESC'], 9);
+
+        $this->view->render($response, 'index.html', [
+            'features_products' => $feature,
+            'new_products' => $news,
+            'new_items' => $new_item
+        ]);
         return $response;
     }
 
