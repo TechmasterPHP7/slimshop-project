@@ -4,6 +4,10 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-3">
+                <div class="left-sidebar">
+                    {#{{ path_for('left_sidebar', cat)#}
+                    {% include 'left_sidebar.html' %}
+                </div>
             </div>
             <div>
 
@@ -13,40 +17,41 @@
                     <div class="col-sm-5">
 
                         <div class="view-product">
-                            <img src="/assets/images/{{ p.image }}" alt="" />
+                            <img src="{{ p.image }}" alt="" />
                             <h3>ZOOM</h3>
                         </div>
+                        {#<div id="similar-product" class="carousel slide" data-ride="carousel">#}
 
-                        <div id="similar-product" class="carousel slide" data-ride="carousel">
-
-                            <!-- Wrapper for slides -->
+                            {#<!-- Wrapper for slides -->#}
 
 
-                            <!-- Controls -->
-                            <a class="left item-control" href="#similar-product" data-slide="prev">
-                                <i class="fa fa-angle-left"></i>
-                            </a>
-                            <a class="right item-control" href="#similar-product" data-slide="next">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </div>
+                            {#<!-- Controls -->#}
+                            {#<a class="left item-control" href="#similar-product" data-slide="prev">#}
+                                {#<i class="fa fa-angle-left"></i>#}
+                            {#</a>#}
+                            {#<a class="right item-control" href="#similar-product" data-slide="next">#}
+                                {#<i class="fa fa-angle-right"></i>#}
+                            {#</a>#}
+                        {#</div>#}
 
                     </div>
                     <div class="col-sm-7">
                         <div class="product-information"><!--/product-information-->
                             <img src="/assets/images/product-details/new.jpg" class="newarrival" alt="" />
+                            <br/>
                             <h2>{{ p.material }}</h2>
                             <p>Web ID: {{ p.code }}</p>
                             <img src="/assets/images/product-details/rating.png" alt="" />
-								<span>
-									<span>{{ p.price }} VND</span>
-
-									<input type="text" value="3" />
-									<button type="button" class="btn btn-fefault cart">
-                                        <i class="fa fa-shopping-cart"></i>
-                                        Add to cart
-                                    </button>
-								</span>
+                            <br/>
+                            <span>
+                                <span>{{ product.price | number_format ~ " đ" }}</span>
+                                <label>Quantity:</label>
+                                <input type="text" value="3" />
+                                <button type="button" class="btn btn-fefault cart">
+                                    <i class="fa fa-shopping-cart"></i>
+                                    Thêm vào giỏ hàng
+                                </button>
+                            </span>
                             <p><b>Availability:</b> In Stock</p>
                             <p><b>Condition:</b> New</p>
                             <p><b>Brand:</b> E-SHOPPER</p>
@@ -61,8 +66,6 @@
                   </p>
                </div>
                 </div><!--/category-tab-->
-
-
 
             </div>
         </div>

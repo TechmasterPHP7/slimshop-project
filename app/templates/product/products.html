@@ -1,40 +1,12 @@
-{#{% extends 'layout.html' %}#}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta property="fb:app_id" content="290963984430053"/>
-    <meta property="og:site_name" content="Apple market"/>
-    <meta property="og:image" content="http://shop.arrowjs.io/img/logo-facebook.png"/>
-    <meta property="og:image:width" content="600"/>
-    <meta property="og:image:height" content="315"/>
-    <meta property="og:description" content="Trang web bán hàng - Sản phẩm demo khóa học PHP7 Techmaster"/>
-    <meta property="og:title" content="Đồ apple giá tốt nhất Việt Nam"/>
-    <meta property="og:url" content="http://shop.arrowjs.io"/>
-    <meta property="og:locale" content="vi_VN"/>
-    <title>Thời trang nữ</title>
-    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/assets/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/assets/css/prettyPhoto.css" rel="stylesheet">
-    <link href="/assets/css/price-range.css" rel="stylesheet">
-    <link href="/assets/css/animate.css" rel="stylesheet">
-    <link href="/assets/css/main.css" rel="stylesheet">
-    <link href="/assets/css/responsive.css" rel="stylesheet">
-    <link href="/assets/css/style.css" rel="stylesheet">
-
-    {% block cssExtends %}
-        <!-- include more css file here -->
-    {% endblock %}
-
-    <link rel="shortcut icon" href="/assets/images/ico/favicon.ico">
-</head>
-{% include 'header.html' %}
-
+{% extends 'layout.html' %}
+{% block content %}
 <section>
     <div class="container">
         <div class="row">
             <div class="col-sm-3">
-                {% include 'left_sidebar.html' %}
+                <div class="left-sidebar">
+                    {% include 'left_sidebar.html' %}
+                </div>
             </div>
 
             <div class="col-sm-9 padding-right">
@@ -53,20 +25,23 @@
                         <div class="col-sm-4">
                             <div class="product-image-wrapper">
                                 <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <img data-slug="{{ p.slug }}" src="{{ p.image }}"
-                                             alt="{{ p.image }}"/>
+                                    <div class="productinfo text-center" id="{{ p.id }}">
+                                        <div style="height: 249px">
+                                            <img class="feat_img_tag" src="{{ p.image }}" id="{{ p.id }}"/>
+                                        </div>
 
-                                        {#<h5>{{ p.price }} VND</h5>#}
+                                        <h2>{{ p.price | number_format ~ " đ" }}</h2>
 
+                                        <p id="{{ p.id }}">{{ p.title }}</p>
+                                        <a href="javascript:add_to_cart({{ p.id }})" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
                                     </div>
                                     <div class="product-overlay">
-                                        <div class="overlay-content">
-                                            <h2>{{ p.price }} VND</h2>
-                                            <p data-slug="{{ p.slug }}"><a
-                                                        href="/products/{{ p.slug }}">{{ p.title }}</a></p>
-                                            <a href="#" class="btn btn-default add-to-cart"><i
-                                                        class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        <div class="overlay-content" id="{{ p.id }}">
+
+                                            <h2>{{ p.price | number_format ~ " đ" }}</h2>
+
+                                            <a href="/products/{{ p.slug }}"><p id="{{ p.id }}">{{ p.title }}</p></a>
+                                            <a href="javascript:add_cart({{ p.id }})" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
                                         </div>
                                     </div>
                                 </div>
@@ -97,9 +72,4 @@
     </div>
 </section>
 
-
-{% include 'footer.html' %}
-
-
-</body>
-</html>
+{% endblock %}
