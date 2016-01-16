@@ -24,6 +24,7 @@ $container['view'] = function ($c) {
     if($categories) $categories = json_decode($categories);
 
     $view->getEnvironment()->addGlobal('__cates', $categories);
+    $view->getEnvironment()->addGlobal('__user', $_SESSION['user']);
     return $view;
 };
 
@@ -100,4 +101,7 @@ $container['App\Controller\ProductController'] = function ($c) {
 
 $container['App\Controller\ViewController'] = function ($c) {
     return new App\Controller\ViewController($c);
+};
+$container['App\Controller\UserController'] = function ($c) {
+    return new App\Controller\UserController($c);
 };

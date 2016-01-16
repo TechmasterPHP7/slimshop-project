@@ -23,11 +23,11 @@ return [
             ],
             'connection' => [
                 'driver'   => 'pdo_pgsql',
-                'host'     => '127.0.0.1',
-                'port'     => 5432,
-                'dbname'   => 'vaynu',
-                'user'     => 'vhchung',
-                'password' => '',
+                'host'     => 'localhost',
+                'port'     => 5433,
+                'dbname'   => 'Slimshop',
+                'user'     => 'postgres',
+                'password' => '123',
             ]
         ],
 
