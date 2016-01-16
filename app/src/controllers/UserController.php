@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Libs\Hash;
 use App\Model\Users;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -17,7 +18,8 @@ final class UserController extends BaseController
     }
 // Login --------------------------------------------------------------------
     public function loginAction(Request $request, Response $response, $args)
-    {
+    {    $hash = new Hash();
+
         if ($request->isPost()) {
 
             $data = $request->getParsedBody();
@@ -29,7 +31,8 @@ final class UserController extends BaseController
             if(is_null($User)) {
                 $this->flash->addMessage('error', 'NAME FAIL');
             } else {
-                if($User->getPassword() == $data['pass'])
+                $pass = $hash->create($data['pass'],SALT);
+                if($User->getPassword() == $pass)
                 {
                     $this->flash->addMessage('success', "SUCCESS !");
                     $_SESSION['user'] = [
@@ -61,6 +64,7 @@ final class UserController extends BaseController
         $username = $data['name'];
         $email = $data['email'];
         $pass = $data['pass'];
+        $hash = new Hash();
 
         $res = true;
 
@@ -91,6 +95,7 @@ final class UserController extends BaseController
 
         if ($res) {
             $user = new Users();
+            $data['pass'] = $hash->create($data['pass'], SALT);
             $user->setUsername($data['name']);
             $user->setEmail($data['email']);
             $user->setPassword($data['pass']);
