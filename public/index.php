@@ -10,7 +10,7 @@ if (PHP_SAPI == 'cli-server') {
 }
 
 require __DIR__ . '/../vendor/autoload.php';
-
+define('SALT', '123234345456567678789890098987867645432321');
 session_start();
 use App\Libs\NotFoundHandler;
 // Instantiate the app
