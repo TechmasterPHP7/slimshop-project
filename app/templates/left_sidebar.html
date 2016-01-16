@@ -8,11 +8,10 @@
                         <a href="/products/category/{{ cat.slug }}" >
                             {{ cat.title }}
                         </a>
-                        <a data-toggle="collapse" data-parent="#accordian" style="float: right" href="#menu_child{{ loop.index }}">+</a>
+                        <a data-toggle="collapse" data-parent="#accordian" style="float: right" href="#menu_child{{ cat.id }}">+</a>
                 </h4>
             </div>
-
-            <div id="menu_child{{ loop.index }}" class="panel-collapse collapse">
+            <div id="menu_child{{ cat.id }}" class="panel-collapse collapse">
                 <div class="panel-body">
                     <ul>
                         {% for cat2 in __cates %}
