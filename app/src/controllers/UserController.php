@@ -9,6 +9,12 @@ use App\Libs\Validate as Validate;
 
 final class UserController extends BaseController
 {
+    public function logoutAction(Request $request , Response $response , $args )
+    {
+        unset($_SESSION['user']);
+        return $response->withStatus(301)->withHeader('Location', '/');
+
+    }
 // Login --------------------------------------------------------------------
     public function loginAction(Request $request, Response $response, $args)
     {
@@ -21,7 +27,7 @@ final class UserController extends BaseController
                 echo $e->getMessage(); die;
             }
             if(is_null($User)) {
-                $this->flash->addMessage('error', 'Name Khong ton tai!');
+                $this->flash->addMessage('error', 'NAME FAIL');
             } else {
                 if($User->getPassword() == $data['pass'])
                 {
@@ -31,7 +37,7 @@ final class UserController extends BaseController
                         'email' => $User->getEmail()
                     ];
                 } else {
-                    $this->flash->addMessage('error',"Sai mat khau !!!");
+                    $this->flash->addMessage('error',"PASS FAIL !!!");
                 }
 
             }
@@ -101,6 +107,7 @@ final class UserController extends BaseController
 
         return $response->withStatus(301)->withHeader('Location', '/login');
     }
+
 
 }
 

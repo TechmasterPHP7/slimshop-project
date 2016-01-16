@@ -14,6 +14,8 @@ $app->post('/login','App\Controller\UserController:loginAction');
 
 $app->post('/register','App\Controller\UserController:registerAction');
 
+$app->get('/logout','App\Controller\UserController:logoutAction');
+
 
 
 
