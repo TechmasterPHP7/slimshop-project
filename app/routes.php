@@ -13,9 +13,12 @@ $app->get('/login','App\Controller\UserController:loginAction')
 $app->post('/login','App\Controller\UserController:loginAction');
 
 $app->post('/register','App\Controller\UserController:registerAction');
-$app->get('/products','App\Controller\ProductController:productAction');
 
 $app->get('/logout','App\Controller\UserController:logoutAction');
+
+
+$app->get('/products','App\Controller\ProductController:productAction');
+
 $app->get('/products/page/{page}','App\Controller\ProductController:productAction');
 
 $app->get('/products/{slug}', 'App\Controller\ProductController:productDetailAction');
