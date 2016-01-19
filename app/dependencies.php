@@ -99,8 +99,8 @@ $container['App\Controller\ProductController'] = function ($c) {
     return new App\Controller\ProductController($c);
 };
 
-$container['App\Controller\ViewController'] = function ($c) {
-    return new App\Controller\ViewController($c);
+$container['App\Controller\CartController'] = function ($c) {
+    return new App\Controller\CartController($c);
 };
 $container['App\Controller\UserController'] = function ($c) {
     return new App\Controller\UserController($c);
