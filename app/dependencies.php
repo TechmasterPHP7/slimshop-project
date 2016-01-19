@@ -21,7 +21,7 @@ $container['view'] = function ($c) {
 
     $categories = $c->get('redis')->get('category');
 
-    if($categories) $categories = json_decode($categories);
+    if ($categories) $categories = json_decode($categories);
 
     $view->getEnvironment()->addGlobal('__cates', $categories);
     $view->getEnvironment()->addGlobal('__user', $_SESSION['user']);
@@ -30,11 +30,15 @@ $container['view'] = function ($c) {
 
 $container['redis'] = function ($c) {
     $redis = new Redis();
-    $redis->connect('127.0.0.1', 6379);
+    if (!$redis->connect('127.0.0.1', 6379)) {
+        $c->get('logger')->error('Redis is not running!');
+        echo 'Redis is not running!';
+        die;
+    };
 
     $cate = $c->get('em')->getRepository('App\Model\Categories')->findBy([], ['id' => 'ASC']);
 
-    foreach($cate as $item) {
+    foreach ($cate as $item) {
         $categories[] = [
             'id' => $item->getId(),
             'title' => $item->getTitle(),
@@ -68,7 +72,18 @@ $container['em'] = function ($c) {
         $settings['doctrine']['meta']['cache'],
         false
     );
-    return \Doctrine\ORM\EntityManager::create($settings['doctrine']['connection'], $config);
+
+    $em = \Doctrine\ORM\EntityManager::create($settings['doctrine']['connection'], $config);
+    // check if connection is alive
+    try {
+        $em->getConnection()->connect();
+    } catch (\Exception $e) {
+        $c->get('logger')->error($e->getMessage());
+        echo $e->getMessage();
+        die;
+    }
+
+    return $em;
 };
 
 // monolog
