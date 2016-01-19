@@ -1,6 +1,7 @@
 <?php
 return [
     'settings' => [
+        'displayErrorDetails' => true,
         // View settings
         'view' => [
             'template_path' => __DIR__ . '/templates',
@@ -24,10 +25,10 @@ return [
             'connection' => [
                 'driver'   => 'pdo_pgsql',
                 'host'     => 'localhost',
-                'port'     => 5433,
-                'dbname'   => 'Slimshop',
-                'user'     => 'postgres',
-                'password' => '123',
+                'port'     => 5432,
+                'dbname'   => 'vaynu',
+                'user'     => 'vhchung',
+                'password' => '',
             ]
         ],
 
