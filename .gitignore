@@ -4,3 +4,4 @@ cache/*
 public/productimg/
 public/Uploads/
 .idea/
+settings.php
