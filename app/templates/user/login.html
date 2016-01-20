@@ -1,54 +1,54 @@
 {% extends 'layout.html' %}
 {% block content %}
-    {% if flash_success  %}
-        {% for f in flash_success %}
-            <div class="alert alert-success text-center">{{ f }}</div>
-            {% endfor %}
-        {% endif  %}
+	{% if flash_success  %}
+		{% for f in flash_success %}
+			<div class="alert alert-success text-center">{{ f }}</div>
+		{% endfor %}
+	{% endif  %}
 
-    {% if flash_error   %}
-        <div class="alert alert-warning text-center">
-        {% for f in flash_error %}
-            <p>{{ f }}</p>
-        {% endfor %}
-        </div>
-    {% endif  %}
+	{% if flash_error   %}
+		<div class="alert alert-warning text-center">
+			{% for f in flash_error %}
+				<p>{{ f }}</p>
+			{% endfor %}
+		</div>
+	{% endif  %}
 
 
-    <section id="form"><!--form-->
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-4 col-sm-offset-1">
-                    <div class="login-form"><!--login form-->
-                        <h2>Login to your account</h2>
-                        <form method="post">
-                            <input type="text" placeholder="FullName" name="name">
-                            <input type="password" placeholder="Password" name="pass">
+	<section id="form"><!--form-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4 col-sm-offset-1">
+					<div class="login-form"><!--login form-->
+						<h2>Login to your account</h2>
+						<form method="post">
+							<input type="text" placeholder="FullName" name="name">
+							<input type="password" placeholder="Password" name="pass">
 							<span>
 								<input type="checkbox" class="checkbox">
 								Keep me signed in
 							</span>
-                            <button type="submit" class="btn btn-default">Login</button>
-                        </form>
-                    </div><!--/login form-->
-                </div>
-                <div class="col-sm-1">
-                    <h2 class="or">OR</h2>
-                </div>
-                <div class="col-sm-4">
-                    <div class="signup-form"><!--sign up form-->
-                        <h2>New User Signup!</h2>
-                        <form method="post" action="/register">
-                            <input type="text" placeholder="FullName" name="name">
-                            <input type="email" placeholder="Email Address" name="email">
-                            <input type="password" placeholder="Password" name="pass">
-                            <button type="submit" class="btn btn-default">Signup</button>
-                        </form>
-                    </div><!--/sign up form-->
-                </div>
-            </div>
-        </div>
-    </section>
+							<button type="submit" class="btn btn-default">Login</button>
+						</form>
+					</div><!--/login form-->
+				</div>
+				<div class="col-sm-1">
+					<h2 class="or">OR</h2>
+				</div>
+				<div class="col-sm-4">
+					<div class="signup-form"><!--sign up form-->
+						<h2>New User Signup!</h2>
+						<form method="post" action="/register">
+							<input type="text" placeholder="FullName" name="name">
+							<input type="email" placeholder="Email Address" name="email">
+							<input type="password" placeholder="Password" name="pass">
+							<button type="submit" class="btn btn-default">Signup</button>
+						</form>
+					</div><!--/sign up form-->
+				</div>
+			</div>
+		</div>
+	</section>
 
 
 {% endblock %}

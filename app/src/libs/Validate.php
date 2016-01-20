@@ -20,7 +20,7 @@ class Validate
      */
     static function isValidUsername($input)
     {
-      return preg_match('/^[a-zA-Z0-9]{6,12}$/',$input);
+      return preg_match('/^[a-zA-Z0-9]{6,32}$/',$input);
     }
     /**
      * @param $input
@@ -36,6 +36,6 @@ class Validate
      */
     static function isValidPass($input)
     {
-        return preg_match('/^[a-zA-Z0-9]{6,16}$/',$input);
+        return preg_match('/^[a-zA-Z0-9]{6,32}$/',$input);
     }
 }
