@@ -50,23 +50,21 @@
                         <h2 class="title text-center">{{ cat.title }}</h2>
                     {% endif %}
                     {% for p in products %}
+
+
                         <div class="col-sm-4">
                             <div class="product-image-wrapper">
                                 <div class="single-products">
                                     <div class="productinfo text-center">
-                                        <img data-slug="{{ p.slug }}" src="{{ p.image }}"
-                                             alt="{{ p.image }}"/>
-
-                                        {#<h5>{{ p.price }} VND</h5>#}
-
+                                        <img  data-slug="{{ p.slug }}" src="{{ p.image }}" />
+                                        <h2>{{ p.price }} VND</h2>
+                                        <p>{{ p.title }}</p>
                                     </div>
                                     <div class="product-overlay">
                                         <div class="overlay-content">
                                             <h2>{{ p.price }} VND</h2>
-                                            <p data-slug="{{ p.slug }}"><a
-                                                        href="/products/{{ p.slug }}">{{ p.title }}</a></p>
-                                            <a href="#" class="btn btn-default add-to-cart"><i
-                                                        class="fa fa-shopping-cart"></i>Add to cart</a>
+                                            <p><a href="/products/{{ p.slug }}">{{ p.title }}</a></p>
+                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                         </div>
                                     </div>
                                 </div>
