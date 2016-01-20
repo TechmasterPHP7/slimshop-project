@@ -102,6 +102,10 @@ $container['notFoundHandler'] = function ($c) {
     });
 };
 
+$container['fig'] = function($c) {
+    return new Dflydev\FigCookies\Cookies;
+};
+
 // -----------------------------------------------------------------------------
 // Controller factories
 // -----------------------------------------------------------------------------

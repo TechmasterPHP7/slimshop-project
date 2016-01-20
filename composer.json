@@ -23,6 +23,7 @@
         "slim/twig-view": "^2.0",
         "slim/flash": "^0.1.0",
         "monolog/monolog": "^1.17",
-        "doctrine/orm": "2.5.*"
+        "doctrine/orm": "2.5.*",
+        "dflydev/fig-cookies": "^1.0.1"
     }
 }
