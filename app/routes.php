@@ -27,3 +27,20 @@ $app->get('/products/category/{slug}','App\Controller\ProductController:productC
 
 $app->get('/products/category/{slug}/page/{page}','App\Controller\ProductController:productCategoryAction');
 
+// backend router
+
+$app->group('/admin', function () use ($app) {
+    $app->get('',  'App\Controller\Backend\DashboardController:indexAction');
+
+    $app->get('/login',  'App\Controller\Backend\UserController:loginAction');
+
+    $app->get('/products',  'App\Controller\Backend\ProductController:indexAction');
+})->add(function ($request, $response, $next) {
+    if($_SESSION['user']['role'] == 1) {
+        $response = $next($request, $response);
+        return $response;
+    } else {
+        $this->flash->addMessage('error', 'Permission denied');
+        return $response->withStatus(301)->withHeader('Location', '/login');
+    }
+});
