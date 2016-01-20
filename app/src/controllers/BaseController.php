@@ -10,6 +10,7 @@ class BaseController
     protected $flash;
     protected $em;  // Entities Manager
     protected $redis;
+    protected $fig;
 
     public function __construct(Container $c)
     {
@@ -18,5 +19,6 @@ class BaseController
         $this->flash = $c->get('flash');
         $this->em = $c->get('em');
         $this->redis = $c->get('redis');
+        $this->fig = $c->get('fig');
     }
 }
