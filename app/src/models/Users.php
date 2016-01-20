@@ -32,13 +32,6 @@ class Users
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=60, nullable=true)
-     */
-    private $password;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="fullname", type="string", length=100, nullable=true)
      */
     private $fullname;
@@ -56,6 +49,20 @@ class Users
      * @ORM\Column(name="created_at", type="datetime", nullable=true)
      */
     private $createdAt;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="password", type="text", nullable=true)
+     */
+    private $password;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="role", type="integer", nullable=true)
+     */
+    private $role = '0';
 
 
     /**
@@ -90,30 +97,6 @@ class Users
     public function getUsername()
     {
         return $this->username;
-    }
-
-    /**
-     * Set password
-     *
-     * @param string $password
-     *
-     * @return Users
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * Get password
-     *
-     * @return string
-     */
-    public function getPassword()
-    {
-        return $this->password;
     }
 
     /**
@@ -167,13 +150,15 @@ class Users
     /**
      * Set createdAt
      *
+     * @PrePersist
+     *
      * @param \DateTime $createdAt
      *
      * @return Users
      */
     public function setCreatedAt()
     {
-        $this->createdAt = new \DateTime("now");
+        $this->createdAt = new \DateTime();
 
         return $this;
     }
@@ -186,6 +171,54 @@ class Users
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     *
+     * @return Users
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set role
+     *
+     * @param integer $role
+     *
+     * @return Users
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
+    /**
+     * Get role
+     *
+     * @return integer
+     */
+    public function getRole()
+    {
+        return $this->role;
     }
 }
 

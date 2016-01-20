@@ -37,7 +37,8 @@ final class UserController extends BaseController
                     $this->flash->addMessage('success', "SUCCESS !");
                     $_SESSION['user'] = [
                         'username'  => $User->getUsername(),
-                        'email' => $User->getEmail()
+                        'email' => $User->getEmail(),
+                        'role' => $User->getRole()
                     ];
                 } else {
                     $this->flash->addMessage('error',"PASS FAIL !!!");

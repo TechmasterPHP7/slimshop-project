@@ -35,7 +35,7 @@ final class ProductController extends BaseController
 
         $count = count($all);
         $totalPage = ceil($count/$limit);
-//var_dump($count, $totalPage); die;
+        //var_dump($count, $totalPage); die;
 
         $this->view->render($response, 'product/products.html', [
             'products' => $products,
@@ -49,7 +49,6 @@ final class ProductController extends BaseController
 
     public function productDetailAction(Request $request, Response $response, $args)
     {
-
 
         try {
 
@@ -71,17 +70,35 @@ final class ProductController extends BaseController
     {
         try {
 
+
             $page = (isset($args['page'])) ? $args['page']: 1;
             $limit = 6;
             $offset = ($page - 1) * $limit;
 
 
             $cat = $this->em->getRepository('App\Model\Categories')->findOneBy(['slug'=>$args['slug']]);
+            if($cat->getIsParent() == false){
+                //select * from products where                                    cagtegory=... order by id desc limit 23 offset 0;
+                $category = $this->em->getRepository('App\Model\Products')->findBy(['category'=> $cat->getId()],['id'=>'ASC'],$limit,$offset);
+                $all = $this->em->getRepository('App\Model\Categories')->findBy([]);
+            }else{
 
-            //select * from products where                                    cagtegory=... order by id desc limit 23 offset 0;
-            $category = $this->em->getRepository('App\Model\Products')->findBy(['category'=> $cat->getId() ],['id'=>'ASC'],$limit,$offset);
+                $cats = $this->em->getRepository('App\Model\Categories')->findBy(['parent'=> $cat->getId()]);
+                $cid=[];
+                foreach($cats as $c){
+                    $cid[] =  $c->getId();
+//                    array_push($cid, $c->getId());
+                }
 
-            $all = $this->em->getRepository('App\Model\Categories')->findBy([]);
+                $arr = implode(',',$cid);
+                //select * from products where category in (3,4,5,6,7,8,9,10,11,12,13,14)
+                $category = $this->em->createQuery("SELECT p FROM App\Model\Products AS p WHERE p.category IN ($arr)")
+                    ->setMaxResults($limit)
+                    ->setFirstResult($offset)
+                    ->getResult();
+                $all = $this->em->getRepository('App\Model\Products')->findBy([]);
+
+            }
 
         } catch (\Exception $e) {
             echo $e->getMessage();

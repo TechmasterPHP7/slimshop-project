@@ -40,7 +40,7 @@
                                           class="cart_quantity">{% if cart %}({{ cart.length }}){% else %} (0){% endif %}  </span>
                                 </a></li>
                             {% if __user is empty %}
-                            <li><a href="#" class="login"><i class="fa fa-lock"></i> Đăng nhập </a></li>
+                            <li><a href="/login" class="login"><i class="fa fa-lock"></i> Đăng nhập </a></li>
                             {% else %}
                                 <li><a href="/profile"><i class="fa fa-user"></i> {{ __user.username }}</a></li>
                                 <li><a href="/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
