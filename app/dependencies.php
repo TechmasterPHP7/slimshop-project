@@ -25,6 +25,7 @@ $container['view'] = function ($c) {
 
     $view->getEnvironment()->addGlobal('__cates', $categories);
     $view->getEnvironment()->addGlobal('__user', $_SESSION['user']);
+    $view->getEnvironment()->addGlobal('__totalcart', count($_COOKIE['id']));
     return $view;
 };
 
