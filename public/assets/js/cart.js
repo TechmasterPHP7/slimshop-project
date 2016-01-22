@@ -1,20 +1,23 @@
 $(document).ready(function add_cart(id) {
     $.ajax({
-        type: 'POST',
-        url: window.location.pathname
-    }).success(function(){
-
-    });
-};
-
-$(document).ready(function () {
-    $(".productinfo div img").on("click", function () {
-        window.location.href = '/products/' + this.slug;
-    });
-    $('.overlay-content img').on("click", function () {
-        window.location.href = '/products/' + this.slug;
-    });
-    $('.overlay-content p').on("click", function () {
-        window.location.href = '/products/' + this.slug;
+        url : "/addcart",
+        type : "POST",
+        data : {
+          id : id
+        },
+        success : function(data) {
+            data = JSON.parse(data);
+            console.log(typeof data, data);
+        }
     });
 });
+
+//$(document).ready(function delete_cart(id) {
+//    $.ajax({
+//        url : "/cart",
+//        type : "post",
+//        success : function() {
+//            $.removeCookie('id');
+//        }
+//    });
+//});

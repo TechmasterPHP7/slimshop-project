@@ -37,7 +37,7 @@
                         <ul class="nav navbar-nav">
                             <li><a href="/cart" class="cart-box" id="cart-info"><i class="fa fa-shopping-cart"></i> Giỏ hàng
                                     <span id="cart_quantity"
-                                          class="cart_quantity">{% if cart %}({{ cart.length }}){% else %} (0){% endif %}  </span>
+                                          class="cart_quantity">{% if __totalcart %}({{ __totalcart }}){% else %} (0){% endif %}  </span>
                                 </a></li>
                             {% if __user is empty %}
                             <li><a href="/login" class="login"><i class="fa fa-lock"></i> Đăng nhập </a></li>

@@ -26,14 +26,12 @@ $app->get('/products/category/{slug}','App\Controller\ProductController:productC
 
 $app->get('/products/category/{slug}/page/{page}','App\Controller\ProductController:productCategoryAction');
 
-$app->post('/cart','App\Controller\CartController:addCartAction');
 
-$app->post('/cart','App\Controller\CartController:removeCartAction');
+// <- Cart ->
+$app->post('/addcart','App\Controller\CartController:addCartAction');
 
-$app->post('/cart','App\Controller\CartController:viewCartAction');
+$app->post('/removecart', 'App\Controller\CartController:removeCartAction');
 
-$app->post('/','App\Controller\CartController:addCartAction');
+$app->get('/cart', 'App\Controller\CartController:vỉewCartAction');
 
-//$app->post('/products/','App\Controller\CartController:addCartAction');
-
-$app->post('/checkout','App\Controller\CartController:viewCheckOutAction');
+// <- Cart ->
