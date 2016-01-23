@@ -26,9 +26,15 @@ return [
                 'driver'   => 'pdo_pgsql',
                 'host'     => 'localhost',
                 'port'     => 5432,
+<<<<<<< HEAD
                 'dbname'   => 'shopper',
                 'user'     => 'postgres',
                 'password' => '240315',
+=======
+                'dbname'   => 'vaynu',
+                'user'     => 'vhchung',
+                'password' => '',
+>>>>>>> 4fa50dea05b6f6022a59f4d4c6487ad3d556ef9b
             ]
         ],
 

@@ -18,7 +18,12 @@ class NotFoundHandler extends NotFound {
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response) {
         parent::__invoke($request, $response);
 
-        $this->view->render($response, '404.html');
+        if(strpos($request->getUri()->getPath(), '/admin/') !== false) {
+            $this->view->render($response, 'backend/404.html');
+        } else {
+            $this->view->render($response, '404.html');
+        }
+
 
         return $response->withStatus(404);
     }

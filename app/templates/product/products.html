@@ -22,9 +22,12 @@
                         <h2 class="title text-center">{{ cat.title }}</h2>
                     {% endif %}
                     {% for p in products %}
+
+
                         <div class="col-sm-4">
                             <div class="product-image-wrapper">
                                 <div class="single-products">
+<<<<<<< HEAD
                                     <div class="productinfo text-center" id="{{ p.id }}">
                                         <div style="height: 249px">
                                             <img class="feat_img_tag" src="{{ p.image }}" id="{{ p.id }}"/>
@@ -42,6 +45,18 @@
 
                                             <a href="/products/{{ p.slug }}"><p id="{{ p.id }}">{{ p.title }}</p></a>
                                             <a href="javascript:add_cart({{ p.id }})" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+=======
+                                    <div class="productinfo text-center">
+                                        <img  data-slug="{{ p.slug }}" src="{{ p.image }}" />
+                                        <h2>{{ p.price }} VND</h2>
+                                        <p>{{ p.title }}</p>
+                                    </div>
+                                    <div class="product-overlay">
+                                        <div class="overlay-content">
+                                            <h2>{{ p.price }} VND</h2>
+                                            <p><a href="/products/{{ p.slug }}">{{ p.title }}</a></p>
+                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+>>>>>>> 4fa50dea05b6f6022a59f4d4c6487ad3d556ef9b
                                         </div>
                                     </div>
                                 </div>
