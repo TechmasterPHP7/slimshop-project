@@ -4,8 +4,6 @@
 $app->get('/', 'App\Controller\HomeController:dispatch')
     ->setName('homepage');
 
-$app->get('/cart', 'App\Controller\CartController:addCartAction');
-
 $app->get('/login','App\Controller\UserController:loginAction')
     ->setName('login');
 

@@ -33,7 +33,7 @@ class CartController extends BaseController
 
     public function viewCartAction(Request $request, Response $response) {
 
-        if(isset($_COOKIE['id'] && $_COOKIE['id'] != '')) {
+        if(isset($_COOKIE['id']) && $_COOKIE['id'] != '') {
             $id = $_COOKIE['id'];
             $products = $this->em->getRepository('App\Model\Products')->findBy(['id' => $id]);
 
