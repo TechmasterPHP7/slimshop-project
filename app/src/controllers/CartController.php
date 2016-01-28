@@ -16,11 +16,25 @@ use Psr\Http\Message\ResponseInterface as Response;
 class CartController extends BaseController
 {
     public function addCartAction(Request $request, Response $response) {
-        if(isset($_POST['id']) ? $_POST['id'] : false) {
-            setcookie('id', $_POST['id'], time() + 86400);
+        $id = $request->getParsedBody('id');
+
+        if(isset($id)) {
+            setcookie('id', $id, time() + 86400);
+            $result = [
+                'success' => true
+            ];
+            $response = $response->withHeader('Content-type', 'application/json');
+            $response->withSatus(200);
+        } else {
+            $result = [
+                'success' => false,
+                'error' => 'Lỗi setcookie'
+            ];
+            $response = $response->withHeader('Content-type', 'application/json');
+            $response->withSatus(500);
         };
 
-        return $response->withStatus(200);
+        return $response->write(json_encode($result));
     }
 
 //    public function removeCartAction(Request $request, Response $response, $id) {
@@ -37,7 +51,7 @@ class CartController extends BaseController
             $id = $_COOKIE['id'];
             $products = $this->em->getRepository('App\Model\Products')->findBy(['id' => $id]);
 
-            $this->view->render($response, 'cart.html', [
+            $this->view->render($response, '/cart/cart.html', [
                 'cart' => $products
             ]);
         };

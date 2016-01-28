@@ -1,13 +1,15 @@
-$(document).ready(function add_cart(id) {
+$('.add-to-cart').click(function() {
+    var id = $(this).attr('data-id');
+
     $.ajax({
         url : "/addcart",
         type : "POST",
         data : {
-          id : id
+            id : id
         },
-        success : function(data) {
-            data = JSON.parse(data);
-            console.log(typeof data, data);
+        success : function(result) {
+            data = JSON.parse(result);
+            console.log(typeof data, result);
         }
     });
 });

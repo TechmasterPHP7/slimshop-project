@@ -17,14 +17,11 @@ final class HomeController extends BaseController
         // New item
         $new_item = $this->em->getRepository('App\Model\Products')->findBy([], ['createdAt' => 'DESC'], 9);
 
-        try {$this->view->render($response, 'index.html', [
+            $this->view->render($response, 'index.html', [
             'features_products' => $feature,
             'new_products' => $news,
             'new_items' => $new_item
-        ]);}catch (\Exception $e){
-            $e->getMessage();
-            die;
-        }
+        ]);
         return $response;
     }
 
