@@ -6,5 +6,4 @@ $(document).ready(function(){
         auto: true,
         speed: 200,
     });
-    slider.startAuto();
 });
