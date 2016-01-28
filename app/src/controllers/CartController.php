@@ -16,24 +16,27 @@ use Psr\Http\Message\ResponseInterface as Response;
 class CartController extends BaseController
 {
     public function addCartAction(Request $request, Response $response) {
-        $id = $request->getParsedBody('id');
+        $id = $request->getParam('id');
 
         if(isset($id)) {
-            setcookie('id', $id, time() + 86400);
+            if(!isset($_COOKIE['ids'])){
+                setcookie('ids', $id, time() + 86400);
+            } else {
+                setcookie('ids', $_COOKIE['ids'] . ',' . $id, time() + 86400);
+            }
             $result = [
                 'success' => true
             ];
             $response = $response->withHeader('Content-type', 'application/json');
-            $response->withSatus(200);
+            $response->withStatus(200);
         } else {
             $result = [
                 'success' => false,
                 'error' => 'Lỗi setcookie'
             ];
             $response = $response->withHeader('Content-type', 'application/json');
-            $response->withSatus(500);
+            $response->withStatus(500);
         };
-
         return $response->write(json_encode($result));
     }
 
@@ -46,17 +49,20 @@ class CartController extends BaseController
 //    }
 
     public function viewCartAction(Request $request, Response $response) {
-
-        if(isset($_COOKIE['id']) && $_COOKIE['id'] != '') {
-            $id = $_COOKIE['id'];
-            $products = $this->em->getRepository('App\Model\Products')->findBy(['id' => $id]);
-
-            $this->view->render($response, '/cart/cart.html', [
+        if(isset($_COOKIE['ids'])){
+            $query = $this->em->createQueryBuilder()
+                ->select('p')
+                ->from('App\Model\Products', 'p')
+                ->where('p.id',$_COOKIE['ids']);
+            $q = $this->em->getQuery($query);
+            $products = $this->em->execute($q);
+            echo '<pre>' . PHP_EOL;
+            var_dump($products);die;
+            echo '</pre>';
+            $this->view->render($response, 'cart/cart.html', [
                 'cart' => $products
             ]);
         };
-
         return $response;
     }
-
 }

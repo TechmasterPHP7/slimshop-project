@@ -29,21 +29,6 @@
 
 </head>
 <!--/head-->
-<!-- include js content here -->
-<script src="/assets/js/jquery.js"></script>
-<script src="/assets/js/bootstrap.min.js"></script>
-<script src="/assets/js/jquery.scrollUp.min.js"></script>
-<script src="/assets/js/price-range.js"></script>
-<script src="/assets/js/jquery.prettyPhoto.js"></script>
-<script src="/assets/js/main.js"></script>
-<script src="/assets/js/jquery.bxslider.min.js"></script>
-<script src="/assets/js/slider.js"></script>
-<script src="/assets/js/cart.js"></script>
-
-
-<!--[if lt IE 9]>
-<script src="/assets/js/html5shiv.js"></script>
-<![endif]-->
 
 <body>
 
@@ -59,17 +44,22 @@
 {% endblock %}
 
 {% include 'footer.html' %}
-
+<!-- include js content here -->
+<script src="/assets/js/jquery.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/jquery.scrollUp.min.js"></script>
+<script src="/assets/js/price-range.js"></script>
+<script src="/assets/js/jquery.prettyPhoto.js"></script>
+<script src="/assets/js/main.js"></script>
+<script src="/assets/js/jquery.bxslider.min.js"></script>
+<script src="/assets/js/slider.js"></script>
+<script src="/assets/js/cart.js"></script>
+<script src="/assets/js/jquery.cookie.js"></script>
+<!--[if lt IE 9]>
+<script src="/assets/js/html5shiv.js"></script>
+<![endif]-->
 {% block jsExtends %}
     {#import javascript#}
 {% endblock %}
-<script>
-
-</script>
-<script src="/assets/js/jquery.js"></script>
-<script src="/assets/js/bootstrap.min.js"></script>
-<script src="/assets/js/jquery.bxslider.min.js"></script>
-<script src="/assets/js/jquery.scrollUp.min.js"></script>
-<script src="/assets/js/main.js"></script>
 </body>
 </html>
