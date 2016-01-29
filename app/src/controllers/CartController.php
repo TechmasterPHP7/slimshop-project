@@ -75,7 +75,28 @@ class CartController extends BaseController
         return $response;
     }
 
+    public function viewCheckOutAction(Request $request, Response $response) {
+
+        $this->view->render($response, 'cart/checkout.html');
+        return $response;
+    }
+
     public function totalPriceAction(Request $request, Response $response){
         
+    }
+
+    public function searchNameItemAction(Request $request, Response $response){
+        $term = trim($request->getParam('term'));
+        $result = [];
+
+        $products = $this->em->getRepository('App\Model\Products')->findBy([], ['id' => 'ASC']);
+        foreach($products as $item){
+            $pro[] = $item->getTitle();
+        };
+        foreach($pro as $title){
+          if(strstr($title, $term)) $result[] = $title;
+        };
+        echo json_encode($result);
+        return $response;
     }
 }

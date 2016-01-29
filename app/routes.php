@@ -24,14 +24,19 @@ $app->get('/products/category/{slug}','App\Controller\ProductController:productC
 
 $app->get('/products/category/{slug}/page/{page}','App\Controller\ProductController:productCategoryAction');
 
-// <- Cart ->
+// Cart router
 $app->post('/addcart','App\Controller\CartController:addCartAction');
 
-$app->post('/removecart', 'App\Controller\CartController:removeCartAction');
+$app->get('/removecart', 'App\Controller\CartController:removeCartAction');
 
-$app->get('/cart', 'App\Controller\CartController:vỉewCartAction');
+$app->get('/cart', 'App\Controller\CartController:viewCartAction');
 
-// <- Cart ->
+$app->get('/checkout', 'App\Controller\CartController:viewCheckOutAction');
+
+// Search Router
+
+$app->get('/search', 'App\Controller\CartController:searchNameItemAction');
+
 // backend router
 
 $app->group('/admin', function () use ($app) {
