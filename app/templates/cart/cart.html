@@ -1,4 +1,4 @@
-{% extends '../layout.html' %}
+{% extends 'layout.html' %}
 {% block content %}
 	<section id="cart_items">
 		<div class="container">
@@ -12,11 +12,11 @@
 				<table class="table table-condensed">
 					<thead>
 						<tr class="cart_menu">
-							<td class="image">Item</td>
+							<td class="image">Sản phẩm</td>
 							<td class="description"></td>
-							<td class="price">Price</td>
-							<td class="quantity">Quantity</td>
-							<td class="total">Total</td>
+							<td class="price">Giá</td>
+							<td class="quantity">Số lượng</td>
+							<td class="total">Tổng</td>
 							<td></td>
 						</tr>
 					</thead>
@@ -45,7 +45,7 @@
 								<p class="cart_total_price">$59</p>
 							</td>
 							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+								<button type="button" class="cart_quantity_delete" data-id="{{ pro.id }}" style="margin-top: 20px;"><i class="fa fa-times"></i></button>
 							</td>
 						</tr>
 						</tbody>

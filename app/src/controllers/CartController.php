@@ -41,28 +41,41 @@ class CartController extends BaseController
     }
 
 //    public function removeCartAction(Request $request, Response $response, $id) {
-//        if(isset($_COOKIE[$id]) && $_COOKIE[$id] != '') {
+//        $id = $request->getParam('id');
 //
+//        if(isset($id)) {
+//            setcookie('ids', $id, time() - 3600);
+//            $result = [
+//                'success' => true
+//            ];
+//            $response = $response->withHeader('Content-type', 'application/json');
+//            $response->withStatus(200);
+//        } else {
+//            $result = [
+//                'success' => false,
+//                'error' => 'Lỗi setcookie'
+//            ];
+//            $response = $response->withHeader('Content-type', 'application/json');
+//            $response->withStatus(500);
 //        };
-//
-//        return $response;
+//        $this->viewCartAction();
+//        return $response->write(json_encode($result));
 //    }
 
     public function viewCartAction(Request $request, Response $response) {
         if(isset($_COOKIE['ids'])){
-            $query = $this->em->createQueryBuilder()
-                ->select('p')
-                ->from('App\Model\Products', 'p')
-                ->where('p.id',$_COOKIE['ids']);
-            $q = $this->em->getQuery($query);
-            $products = $this->em->execute($q);
-            echo '<pre>' . PHP_EOL;
-            var_dump($products);die;
-            echo '</pre>';
-            $this->view->render($response, 'cart/cart.html', [
-                'cart' => $products
-            ]);
+            $args = explode(',', $_COOKIE['ids']);
+            $dql = "SELECT p FROM App\Model\Products p WHERE p.id IN (" . $_COOKIE['ids'] . ")";
+            $products = $this->em->createQuery($dql)->getResult();
+
         };
+        $this->view->render($response, 'cart/cart.html', [
+            'cart' => $products
+        ]);
         return $response;
+    }
+
+    public function totalPriceAction(Request $request, Response $response){
+        
     }
 }
