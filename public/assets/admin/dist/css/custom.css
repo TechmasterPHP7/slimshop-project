@@ -257,3 +257,66 @@ small {
 .user-image+.hidden-xs {
     display: inline-block !important;
 }
+.page-title-action {
+    margin-left: 4px;
+    padding: 4px 8px;
+    position: relative;
+    top: -3px;
+    text-decoration: none;
+    border: medium none;
+    border-radius: 2px;
+    background: #E0E0E0 none repeat scroll 0% 0%;
+    text-shadow: none;
+    font-weight: 600;
+    font-size: 13px;
+}
+.subsubsub {
+    list-style: outside none none;
+    margin: 0px 0px 8px;
+    padding: 0px;
+    font-size: 13px;
+    color: #666;
+    float: left;
+}
+.screen-reader-text {
+    position: absolute;
+    margin: -1px;
+    padding: 0px;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(0px, 0px, 0px, 0px);
+    border: 0px none;
+    word-wrap: normal !important;
+}
+.subsubsub li {
+    display: inline-block;
+    margin: 0px;
+    padding: 0px;
+    white-space: nowrap;
+}
+.subsubsub a {
+    line-height: 2;
+    padding: 0.2em;
+    text-decoration: none;
+}
+p.search-box {
+    float: right;
+    margin: 0px;
+}
+input, select {
+    margin: 1px;
+    padding: 3px 5px;
+}
+.tablenav {
+    clear: both;
+    height: 30px;
+    margin: 6px 0px 4px;
+    vertical-align: middle;
+}
+.tablenav .actions {
+    padding: 2px 8px 0px 0px;
+}
+#your-profile label + a, fieldset label, label {
+    vertical-align: middle;
+}

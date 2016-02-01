@@ -41,10 +41,7 @@ $app->get('/search', 'App\Controller\CartController:searchNameItemAction');
 
 $app->group('/admin', function () use ($app) {
     $app->get('',  'App\Controller\Backend\DashboardController:indexAction');
-
     $app->get('/login',  'App\Controller\Backend\UserController:loginAction');
-
-    $app->get('/products',  'App\Controller\Backend\ProductController:indexAction');
 })->add(function ($request, $response, $next) {
     if($_SESSION['user']['role'] == 1) {
         $response = $next($request, $response);
@@ -54,3 +51,7 @@ $app->group('/admin', function () use ($app) {
         return $response->withStatus(301)->withHeader('Location', '/login');
     }
 });
+
+$app->get('/admin/products', 'App\Controller\Backend\ProductController:indexAction');
+
+$app->get('/admin/category/new', 'App\Controller\Backend\CategoryController:viewCheckOutAction');
