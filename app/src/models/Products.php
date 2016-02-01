@@ -443,9 +443,9 @@ class Products
      *
      * @return Products
      */
-    public function setCreatedAt()
+    public function setCreatedAt($createdAt)
     {
-        $this->createdAt = new \DateTime("now");
+        $this->createdAt = $createdAt;
 
         return $this;
     }

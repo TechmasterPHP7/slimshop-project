@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Users
  *
- * @ORM\Table(name="users", uniqueConstraints={@ORM\UniqueConstraint(name="users_username_key", columns={"username"}), @ORM\UniqueConstraint(name="users_email_key", columns={"email"})})
+ * @ORM\Table(name="users", uniqueConstraints={@ORM\UniqueConstraint(name="users_email_key", columns={"email"}), @ORM\UniqueConstraint(name="users_username_key", columns={"username"})})
  * @ORM\Entity
  */
 class Users
@@ -150,15 +150,13 @@ class Users
     /**
      * Set createdAt
      *
-     * @PrePersist
-     *
      * @param \DateTime $createdAt
      *
      * @return Users
      */
-    public function setCreatedAt()
+    public function setCreatedAt($createdAt)
     {
-        $this->createdAt = new \DateTime();
+        $this->createdAt = $createdAt;
 
         return $this;
     }
