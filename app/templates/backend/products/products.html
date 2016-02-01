@@ -1,0 +1,349 @@
+{% extends 'backend/layout.html' %}
+{% block content %}
+<section class="content">
+  <div class="wrap">
+    <h2>Products <a href="/admin/products/new" class="page-title-action">Add New</a></h2>
+    <h2 class="screen-reader-text">Filter posts list</h2><ul class="subsubsub">
+      <li class="all"><a href="#" class="current">All <span class="count">({{ total_products }})</span></a> |</li>
+      <li class="publish"><a href="#">Published <span class="count">({{ total_publish }})</span></a></li>
+    </ul>
+    <form id="posts-filter" method="get">
+      <p class="search-box">
+        <label class="screen-reader-text" for="post-search-input">Search Products:</label>
+        <input id="post-search-input" name="s" value="" type="search">
+        <input id="search-submit" class="button" value="Search Posts" type="submit"></p>
+
+      <input name="post_status" class="post_status_page" value="all" type="hidden">
+      <input name="post_type" class="post_type_page" value="post" type="hidden">
+
+      <input id="_wpnonce" name="_wpnonce" value="61cd5577b4" type="hidden"><input name="_wp_http_referer" value="/wp-admin/edit.php" type="hidden">	<div class="tablenav top">
+
+        <div class="alignleft actions bulkactions">
+          <label for="bulk-action-selector-top" class="screen-reader-text">Select bulk action</label><select name="action" id="bulk-action-selector-top">
+            <option value="-1">Bulk Actions</option>
+            <option value="edit" class="hide-if-no-js">Edit</option>
+            <option value="trash">Move to Trash</option>
+          </select>
+          <input id="doaction" class="button action" value="Apply" type="submit">
+        </div>
+        <div class="alignleft actions">
+          <label for="filter-by-date" class="screen-reader-text">Filter by date</label>
+          <select name="m" id="filter-by-date">
+            <option selected="selected" value="0">All dates</option>
+            <option value="201602">February 2016</option>
+            <option value="201511">November 2015</option>
+            <option value="200807">July 2008</option>
+          </select>
+          <label class="screen-reader-text" for="cat">Filter by category</label><select name="cat" id="cat" class="postform">
+            <option value="0">All categories</option>
+            <option class="level-0" value="1">Uncategorized</option>
+          </select>
+          <input name="filter_action" id="post-query-submit" class="button" value="Filter" type="submit">		</div>
+        <div class="tablenav-pages one-page"><span class="displaying-num">1 item</span>
+<span class="pagination-links"><span class="tablenav-pages-navspan" aria-hidden="true">«</span>
+<span class="tablenav-pages-navspan" aria-hidden="true">‹</span>
+<span class="paging-input"><label for="current-page-selector" class="screen-reader-text">Current Page</label><input class="current-page" id="current-page-selector" name="paged" value="1" size="1" aria-describedby="table-paging" type="text"> of <span class="total-pages">1</span></span>
+<span class="tablenav-pages-navspan" aria-hidden="true">›</span>
+<span class="tablenav-pages-navspan" aria-hidden="true">»</span></span></div>
+        <br class="clear">
+      </div>
+      <h2 class="screen-reader-text">Posts list</h2><table class="wp-list-table widefat fixed striped posts">
+        <thead>
+        <tr>
+          <td id="cb" class="manage-column column-cb check-column"><label class="screen-reader-text" for="cb-select-all-1">Select All</label><input id="cb-select-all-1" type="checkbox"></td><th scope="col" id="title" class="manage-column column-title column-primary sortable desc"><a href="https://hak2c.wordpress.com/wp-admin/edit.php?orderby=title&amp;order=asc"><span>Title</span><span class="sorting-indicator"></span></a></th><th scope="col" id="author" class="manage-column column-author">Author</th><th scope="col" id="categories" class="manage-column column-categories">Categories</th><th scope="col" id="tags" class="manage-column column-tags">Tags</th><th scope="col" id="stats" class="manage-column column-stats">Stats</th><th scope="col" id="comments" class="manage-column column-comments num sortable desc"><a href="https://hak2c.wordpress.com/wp-admin/edit.php?orderby=comment_count&amp;order=asc"><span><span class="vers comment-grey-bubble" title="Comments"><span class="screen-reader-text">Comments</span></span></span><span class="sorting-indicator"></span></a></th><th scope="col" id="likes" class="manage-column column-likes"><span class="vers"><img title="Likes" alt="Likes" src="//s0.wordpress.com/i/like-grey-icon.png"></span></th><th scope="col" id="date" class="manage-column column-date sortable asc"><a href="https://hak2c.wordpress.com/wp-admin/edit.php?orderby=date&amp;order=desc"><span>Date</span><span class="sorting-indicator"></span></a></th>	</tr>
+        </thead>
+
+        <tbody id="the-list">
+        <tr id="post-1" class="iedit author-self level-0 post-1 type-post status-publish format-standard hentry category-uncategorized">
+          <th scope="row" class="check-column">			<label class="screen-reader-text" for="cb-select-1">Select Hello world!</label>
+            <input id="cb-select-1" name="post[]" value="1" type="checkbox">
+            <div class="locked-indicator"></div>
+          </th><td class="title column-title has-row-actions column-primary page-title" data-colname="Title"><strong><a class="row-title" href="https://hak2c.wordpress.com/wp-admin/post.php?post=1&amp;action=edit" title="Edit “Hello world!”">Hello world!</a></strong>
+            <div class="locked-info"><span class="locked-avatar"></span> <span class="locked-text"></span></div>
+
+            <div class="hidden" id="inline_1">
+              <div class="post_title">Hello world!</div><div class="post_name">hello-world</div>
+              <div class="post_author">4359933</div>
+              <div class="comment_status">open</div>
+              <div class="ping_status">open</div>
+              <div class="_status">publish</div>
+              <div class="jj">02</div>
+              <div class="mm">07</div>
+              <div class="aa">2008</div>
+              <div class="hh">11</div>
+              <div class="mn">21</div>
+              <div class="ss">31</div>
+              <div class="post_password"></div><div class="post_category" id="category_1">1</div><div class="tags_input" id="post_tag_1"></div><div class="sticky"></div><div class="post_format"></div></div><div class="row-actions"><span class="edit"><a href="https://hak2c.wordpress.com/wp-admin/post.php?post=1&amp;action=edit" title="Edit this item">Edit</a> | </span><span class="inline hide-if-no-js"><a href="#" class="editinline" title="Edit this item inline">Quick&nbsp;Edit</a> | </span><span class="trash"><a class="submitdelete" title="Move this item to the Trash" href="https://hak2c.wordpress.com/wp-admin/post.php?post=1&amp;action=trash&amp;_wpnonce=0cf7ec961b">Trash</a> | </span><span class="view"><a href="https://hak2c.wordpress.com/2008/07/02/hello-world/" title="View “Hello world!”" rel="permalink">View</a></span></div><button type="button" class="toggle-row"><span class="screen-reader-text">Show more details</span></button></td><td class="author column-author" data-colname="Author"><a href="edit.php?post_type=post&amp;author=4359933">hak2c</a></td><td class="categories column-categories" data-colname="Categories"><a href="edit.php?category_name=uncategorized">Uncategorized</a></td><td class="tags column-tags" data-colname="Tags"><span aria-hidden="true">—</span><span class="screen-reader-text">No tags</span></td><td class="stats column-stats" data-colname="Stats"><a href="index.php?page=stats&amp;view=post&amp;post=1" style="padding-top: 3px; text-align: center; display: block; border-bottom: none;"><img src="https://s2.wp.com/i/stats-icon.png" alt="More stats"></a></td><td class="comments column-comments" data-colname="Comments">		<div class="post-com-count-wrapper">
+              <a href="https://hak2c.wordpress.com/wp-admin/edit-comments.php?p=1&amp;comment_status=approved" class="post-com-count post-com-count-approved"><span class="comment-count-approved" aria-hidden="true">1</span><span class="screen-reader-text">1 comment</span></a><span class="post-com-count post-com-count-pending post-com-count-no-pending"><span class="comment-count comment-count-no-pending" aria-hidden="true">0</span><span class="screen-reader-text">No pending comments</span></span>		</div>
+          </td><td class="likes column-likes" data-colname="">			<a title="" data-post-id="1" class="post-com-count post-like-count" id="post-like-count-1" data-blog-id="4123323" href="https://hak2c.wordpress.com/2008/07/02/hello-world/#like-1">
+              <span class="comment-count">—</span>
+            </a>
+          </td><td class="date column-date" data-colname="Date">Published<br><abbr title="2008/07/02 11:21:31 am">2008/07/02</abbr></td>		</tr>
+        </tbody>
+
+        <tfoot>
+        <tr>
+          <td class="manage-column column-cb check-column"><label class="screen-reader-text" for="cb-select-all-2">Select All</label><input id="cb-select-all-2" type="checkbox"></td><th scope="col" class="manage-column column-title column-primary sortable desc"><a href="https://hak2c.wordpress.com/wp-admin/edit.php?orderby=title&amp;order=asc"><span>Title</span><span class="sorting-indicator"></span></a></th><th scope="col" class="manage-column column-author">Author</th><th scope="col" class="manage-column column-categories">Categories</th><th scope="col" class="manage-column column-tags">Tags</th><th scope="col" class="manage-column column-stats">Stats</th><th scope="col" class="manage-column column-comments num sortable desc"><a href="https://hak2c.wordpress.com/wp-admin/edit.php?orderby=comment_count&amp;order=asc"><span><span class="vers comment-grey-bubble" title="Comments"><span class="screen-reader-text">Comments</span></span></span><span class="sorting-indicator"></span></a></th><th scope="col" class="manage-column column-likes"><span class="vers"><img title="Likes" alt="Likes" src="//s0.wordpress.com/i/like-grey-icon.png"></span></th><th scope="col" class="manage-column column-date sortable asc"><a href="https://hak2c.wordpress.com/wp-admin/edit.php?orderby=date&amp;order=desc"><span>Date</span><span class="sorting-indicator"></span></a></th>	</tr>
+        </tfoot>
+
+      </table>
+      <div class="tablenav bottom">
+
+        <div class="alignleft actions bulkactions">
+          <label for="bulk-action-selector-bottom" class="screen-reader-text">Select bulk action</label><select name="action2" id="bulk-action-selector-bottom">
+            <option value="-1">Bulk Actions</option>
+            <option value="edit" class="hide-if-no-js">Edit</option>
+            <option value="trash">Move to Trash</option>
+          </select>
+          <input id="doaction2" class="button action" value="Apply" type="submit">
+        </div>
+        <div class="alignleft actions">
+        </div>
+        <div class="tablenav-pages one-page"><span class="displaying-num">1 item</span>
+<span class="pagination-links"><span class="tablenav-pages-navspan" aria-hidden="true">«</span>
+<span class="tablenav-pages-navspan" aria-hidden="true">‹</span>
+<span class="screen-reader-text">Current Page</span><span id="table-paging" class="paging-input">1 of <span class="total-pages">1</span></span>
+<span class="tablenav-pages-navspan" aria-hidden="true">›</span>
+<span class="tablenav-pages-navspan" aria-hidden="true">»</span></span></div>
+        <br class="clear">
+      </div>
+
+    </form>
+
+
+    <form method="get"><table style="display: none"><tbody id="inlineedit">
+
+        <tr id="inline-edit" class="inline-edit-row inline-edit-row-post inline-edit-post quick-edit-row quick-edit-row-post inline-edit-post" style="display: none"><td colspan="9" class="colspanchange">
+
+            <fieldset class="inline-edit-col-left">
+              <legend class="inline-edit-legend">Quick Edit</legend>
+              <div class="inline-edit-col">
+
+                <label>
+                  <span class="title">Title</span>
+                  <span class="input-text-wrap"><input name="post_title" class="ptitle" value="" type="text"></span>
+                </label>
+
+                <label>
+                  <span class="title">Slug</span>
+                  <span class="input-text-wrap"><input name="post_name" value="" type="text"></span>
+                </label>
+
+
+                <fieldset class="inline-edit-date">
+                  <legend><span class="title">Date</span></legend>
+                  <div class="timestamp-wrap"><label><span class="screen-reader-text">Month</span><select name="mm">
+                        <option value="01" data-text="Jan">01-Jan</option>
+                        <option value="02" data-text="Feb">02-Feb</option>
+                        <option value="03" data-text="Mar">03-Mar</option>
+                        <option value="04" data-text="Apr">04-Apr</option>
+                        <option value="05" data-text="May">05-May</option>
+                        <option value="06" data-text="Jun">06-Jun</option>
+                        <option value="07" data-text="Jul" selected="selected">07-Jul</option>
+                        <option value="08" data-text="Aug">08-Aug</option>
+                        <option value="09" data-text="Sep">09-Sep</option>
+                        <option value="10" data-text="Oct">10-Oct</option>
+                        <option value="11" data-text="Nov">11-Nov</option>
+                        <option value="12" data-text="Dec">12-Dec</option>
+                      </select></label> <label><span class="screen-reader-text">Day</span><input name="jj" value="02" size="2" maxlength="2" autocomplete="off" type="text"></label>, <label><span class="screen-reader-text">Year</span><input name="aa" value="2008" size="4" maxlength="4" autocomplete="off" type="text"></label> @ <label><span class="screen-reader-text">Hour</span><input name="hh" value="11" size="2" maxlength="2" autocomplete="off" type="text"></label>:<label><span class="screen-reader-text">Minute</span><input name="mn" value="21" size="2" maxlength="2" autocomplete="off" type="text"></label></div><input id="ss" name="ss" value="31" type="hidden">			</fieldset>
+                <br class="clear">
+
+                <label class="inline-edit-author"><span class="title">Author</span><select name="post_author" class="authors">
+                    <option value="4359933">hak2c</option>
+                  </select></label>
+                <div class="inline-edit-group">
+                  <label class="alignleft">
+                    <span class="title">Password</span>
+                    <span class="input-text-wrap"><input name="post_password" class="inline-edit-password-input" value="" type="text"></span>
+                  </label>
+
+                  <em class="alignleft inline-edit-or">
+                    –OR–				</em>
+                  <label class="alignleft inline-edit-private">
+                    <input name="keep_private" value="private" type="checkbox">
+                    <span class="checkbox-title">Private</span>
+                  </label>
+                </div>
+
+
+              </div></fieldset>
+
+
+            <fieldset class="inline-edit-col-center inline-edit-categories"><div class="inline-edit-col">
+
+
+                <span class="title inline-edit-categories-label">Categories</span>
+                <input name="post_category[]" value="0" type="hidden">
+                <ul class="cat-checklist category-checklist">
+
+                  <li id="category-1" class="popular-category"><label class="selectit"><input value="1" name="post_category[]" id="in-category-1" type="checkbox"> Uncategorized</label></li>
+                </ul>
+
+
+              </div></fieldset>
+
+
+            <fieldset class="inline-edit-col-right"><div class="inline-edit-col">
+
+
+
+                <label class="inline-edit-tags">
+                  <span class="title">Tags</span>
+                  <textarea cols="22" rows="1" name="tax_input[post_tag]" class="tax_input_post_tag"></textarea>
+                </label>
+
+
+
+
+                <div class="inline-edit-group">
+                  <label class="alignleft">
+                    <input name="comment_status" value="open" type="checkbox">
+                    <span class="checkbox-title">Allow Comments</span>
+                  </label>
+                  <label class="alignleft">
+                    <input name="ping_status" value="open" type="checkbox">
+                    <span class="checkbox-title">Allow Pings</span>
+                  </label>
+                </div>
+
+
+                <div class="inline-edit-group">
+                  <label class="inline-edit-status alignleft">
+                    <span class="title">Status</span>
+                    <select name="_status">
+                      <option value="publish">Published</option>
+                      <option value="future">Scheduled</option>
+                      <option value="pending">Pending Review</option>
+                      <option value="draft">Draft</option>
+                    </select>
+                  </label>
+
+
+
+                  <label class="alignleft">
+                    <input name="sticky" value="sticky" type="checkbox">
+                    <span class="checkbox-title">Make this post sticky</span>
+                  </label>
+
+
+
+                </div>
+
+
+              </div></fieldset>
+
+            <p class="submit inline-edit-save">
+              <button type="button" class="button-secondary cancel alignleft">Cancel</button>
+              <input id="_inline_edit" name="_inline_edit" value="62e8e2b73a" type="hidden">				<button type="button" class="button-primary save alignright">Update</button>
+              <span class="spinner"></span>
+              <input name="post_view" value="list" type="hidden">
+              <input name="screen" value="edit-post" type="hidden">
+              <span class="error" style="display:none"></span>
+              <br class="clear">
+            </p>
+          </td></tr>
+
+        <tr id="bulk-edit" class="inline-edit-row inline-edit-row-post inline-edit-post bulk-edit-row bulk-edit-row-post bulk-edit-post" style="display: none"><td colspan="9" class="colspanchange">
+
+            <fieldset class="inline-edit-col-left">
+              <legend class="inline-edit-legend">Bulk Edit</legend>
+              <div class="inline-edit-col">
+                <div id="bulk-title-div">
+                  <div id="bulk-titles"></div>
+                </div>
+
+
+
+
+              </div></fieldset><fieldset class="inline-edit-col-center inline-edit-categories"><div class="inline-edit-col">
+
+
+                <span class="title inline-edit-categories-label">Categories</span>
+                <input name="post_category[]" value="0" type="hidden">
+                <ul class="cat-checklist category-checklist">
+
+                  <li id="category-1" class="popular-category"><label class="selectit"><input value="1" name="post_category[]" id="in-category-1" type="checkbox"> Uncategorized</label></li>
+                </ul>
+
+
+              </div></fieldset>
+
+
+            <fieldset class="inline-edit-col-right"><label class="inline-edit-tags">
+                <span class="title">Tags</span>
+                <textarea cols="22" rows="1" name="tax_input[post_tag]" class="tax_input_post_tag"></textarea>
+              </label><div class="inline-edit-col">
+
+                <label class="inline-edit-author"><span class="title">Author</span><select name="post_author" class="authors">
+                    <option value="-1">— No Change —</option>
+                    <option value="4359933">hak2c</option>
+                  </select></label>
+
+
+                <div class="inline-edit-group">
+                  <label class="alignleft">
+                    <span class="title">Comments</span>
+                    <select name="comment_status">
+                      <option value="">— No Change —</option>
+                      <option value="open">Allow</option>
+                      <option value="closed">Do not allow</option>
+                    </select>
+                  </label>
+                  <label class="alignright">
+                    <span class="title">Pings</span>
+                    <select name="ping_status">
+                      <option value="">— No Change —</option>
+                      <option value="open">Allow</option>
+                      <option value="closed">Do not allow</option>
+                    </select>
+                  </label>
+                </div>
+
+
+                <div class="inline-edit-group">
+                  <label class="inline-edit-status alignleft">
+                    <span class="title">Status</span>
+                    <select name="_status">
+                      <option value="-1">— No Change —</option>
+                      <option value="publish">Published</option>
+
+                      <option value="private">Private</option>
+                      <option value="pending">Pending Review</option>
+                      <option value="draft">Draft</option>
+                    </select>
+                  </label>
+
+
+
+                  <label class="alignright">
+                    <span class="title">Sticky</span>
+                    <select name="sticky">
+                      <option value="-1">— No Change —</option>
+                      <option value="sticky">Sticky</option>
+                      <option value="unsticky">Not Sticky</option>
+                    </select>
+                  </label>
+
+
+
+                </div>
+
+
+              </div></fieldset>
+
+            <p class="submit inline-edit-save">
+              <button type="button" class="button-secondary cancel alignleft">Cancel</button>
+              <input name="bulk_edit" id="bulk_edit" class="button button-primary alignright" value="Update" type="submit">			<input name="post_view" value="list" type="hidden">
+              <input name="screen" value="edit-post" type="hidden">
+              <span class="error" style="display:none"></span>
+              <br class="clear">
+            </p>
+          </td></tr>
+        </tbody></table></form>
+
+    <div id="ajax-response"></div>
+    <br class="clear">
+  </div>
+
+</section><!-- /.content -->
+{% endblock %}
