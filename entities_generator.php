@@ -16,7 +16,7 @@ $connectionParams = array(
     'port' => '5432',
     'user' => 'postgres',
     'password' => '240315',
-    'dbname' => 'shopper',
+    'dbname' => 'slimshop',
     'charset' => 'utf8',
 );
 $em = \Doctrine\ORM\EntityManager::create($connectionParams, $config);
