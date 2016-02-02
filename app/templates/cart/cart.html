@@ -47,6 +47,19 @@
 							<td class="cart_delete">
 								<button type="button" class="cart_quantity_delete" data-id="{{ pro.id }}" style="margin-top: 20px;"><i class="fa fa-times"></i></button>
 							</td>
+							<script>
+								$(document).ready(function(){
+									var value = $('.cart_quantity_input').val();
+
+									if($('.cart_quantity_up').click()){
+										value ++;
+									}
+									if($('.cart_quantity_down').click()){
+										value --;
+									}
+
+								});
+							</script>
 						</tr>
 						</tbody>
 						{% endfor %}

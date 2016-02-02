@@ -1,0 +1,43 @@
+<header class="main-header">
+  <!-- Logo -->
+  <a href="/" target="_blank" class="logo">SlimShop</a>
+  <!-- Header Navbar: style can be found in header.less -->
+  <nav class="navbar navbar-static-top" role="navigation">
+    <!-- Sidebar toggle button-->
+    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+      <span class="sr-only">Toggle navigation</span>
+    </a>
+    <!-- Navbar Right Menu -->
+    <div class="navbar-custom-menu">
+      <ul class="nav navbar-nav">
+        <!-- User Account: style can be found in dropdown.less -->
+        <li class="dropdown user user-menu">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <img src="{% if __user and __user.image and __user.image != '' %}{{ __user.image }}{% else %}/assets/images/noavatar.gif{% endif %}"
+                 class="user-image" alt="User Image"/>
+            <span class="hidden-xs">{% if __user %}{{ __user.username }}{% else %}Default User{% endif %}</span>
+          </a>
+          <ul class="dropdown-menu">
+            <!-- Menu Footer -->
+            <li class="custom-user-footer" style="position: relative;">
+              <a href="/admin/user/profile"
+                 class="btn btn-primary btn-flat btn-block">Profile</a>
+              <a href="/admin/user/logout" class="btn btn-warning btn-flat btn-block">Sign
+                out</a>
+            </li>
+            <!-- User image -->
+            <li class="user-header">
+              <img src="{% if __user and __user.image and __user.image != '' %}{{ __user.image }}{% else %}/assets/images/noavatar.gif{% endif %}"
+                   class="img-circle" alt="User Image"/>
+
+              <p>
+                {% if __user %}{{ __user.user_name }}{% else %}Default User{% endif %}
+                <small class="small-member">Member since {{ __user.created_at | date }}</small>
+              </p>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>

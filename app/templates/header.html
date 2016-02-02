@@ -42,7 +42,7 @@
                             {% if __user is empty %}
                             <li><a href="/login" class="login"><i class="fa fa-lock"></i> Đăng nhập </a></li>
                             {% else %}
-                                <li><a href="/profile"><i class="fa fa-user"></i> {{ __user.username }}</a></li>
+                                <li><a href="/admin"><i class="fa fa-user"></i> {{ __user.username }}</a></li>
                                 <li><a href="/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
                             {% endif %}
                         </ul>

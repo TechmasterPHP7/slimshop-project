@@ -54,4 +54,8 @@ $app->group('/admin', function () use ($app) {
 
 $app->get('/admin/products', 'App\Controller\Backend\ProductController:indexAction');
 
+$app->get('/admin/products/f', 'App\Controller\Backend\ProductController:productCategoryAction');
+
 $app->get('/admin/category/new', 'App\Controller\Backend\CategoryController:viewCheckOutAction');
+
+$app->get('/admin/category/{slug}/page/{page}','App\Controller\Backend\ProductController:productCategoryAction');
