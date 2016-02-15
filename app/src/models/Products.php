@@ -111,7 +111,7 @@ class Products
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=true)
      */
-    private $createdAt = 'now()';
+    private $createdAt;
 
     /**
      * @var boolean
@@ -128,7 +128,7 @@ class Products
     private $quantity = '0';
 
     /**
-     * @var \Categories
+     * @var integer
      *
      * @ORM\ManyToOne(targetEntity="Categories")
      * @ORM\JoinColumns({
@@ -511,13 +511,13 @@ class Products
     /**
      * Set category
      *
-     * @param \Categories $category
+     * @param $id
      *
-     * @return Products
+     * @return integer
      */
-    public function setCategory(\Categories $category = null)
+    public function setCategory($id)
     {
-        $this->category = $category;
+        $this->category = $id;
 
         return $this;
     }
@@ -525,7 +525,7 @@ class Products
     /**
      * Get category
      *
-     * @return \Categories
+     * @return integer
      */
     public function getCategory()
     {

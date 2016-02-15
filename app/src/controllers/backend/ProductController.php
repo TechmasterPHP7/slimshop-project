@@ -20,6 +20,52 @@ class ProductController extends BaseController
         return $this->view->render($response, 'backend/products/products.html');
     }
 
+    public function newProductAction(Request $request, Response $response){
+        return $this->view->render($response, 'backend/products/new_products.html');
+    }
+
+    public function addProductAction(Request $request, Response $response){
+        if($request->isPost()){
+            $data = $request->getParsedBody();
+            $title = $data['product_title'];
+
+            $slug = trim($title);
+            $slug = str_replace(' ','-',$slug);
+
+            $code = $data['product_code'];
+            $color = $data['product_color'];
+            $material = $data['product_material'];
+            $source = $data['product_source'];
+            $size = $data['product_size'];
+            $price = $data['product_price'];
+            $detail = $data['product_detail'];
+            $cate_id = $data['cat'];
+            $quantity = $data['product_quantity'];
+
+            $product = new Products();
+            $product->setTitle($title);
+            $product->setSlug($slug);
+            $product->setCode($code);
+            $product->setColor($color);
+            $product->setMaterial($material);
+            $product->setSource($source);
+            $product->setSize($size);
+            $product->setPrice($price);
+            $product->setDetail($detail);
+            $product->setFeature(false);
+            $product->setPublish(true);
+            $product->setQuantity($quantity);
+//            $product->setCategory($cate_id);
+
+            $this->em->persist($product);
+            $this->em->flush();
+        }
+
+        return $this->view->render($response, 'backend/products/new_products.html',[
+            'new_product' => $product
+        ]);
+    }
+
     public function productCategoryAction(Request $request, Response $response, $args) {
         $id = $request->getParam('cat');
         $page = (isset($args['page'])) ? $args['page']: 1;

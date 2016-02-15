@@ -1,0 +1,185 @@
+{% extends 'backend/layout.html' %}
+{% block content %}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper" xmlns="http://www.w3.org/1999/html">
+    <section class="content-header">
+        {% if new_product %}
+            <h3>
+                The product is published success!
+                View product <a href="/products/{{ new_product.slug }}"> here</a>
+            </h3>
+        {% endif %}
+        <h1>
+            Add new product
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="/admin/products">Products</a></li>
+            <li class="active">New product</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <form action="/admin/products/add" method="post">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h4 class="box-title">Product's title: </h4>
+                            <br/>
+                            <textarea id="product_title" name="product_title" placeholder="Enter product's title here" rows="2" cols="150"></textarea>
+                        </div><!-- /.box-header -->
+                        <div class="box-header with-border">
+                            <div class="col-sm-4">
+                                <h4 class="box-title">Product's code: </h4>
+                                <br/>
+                                <textarea id="product_code" name="product_code" placeholder="Enter product's code here" rows="1" cols="30"></textarea>
+                            </div>
+                            <div class="col-sm-4">
+                                <h4 class="box-title">Product's color: </h4>
+                                <br/>
+                                <textarea id="product_color" name="product_color" placeholder="Enter product's color here" rows="1" cols="30"></textarea>
+                            </div>
+                            <div class="col-sm-4">
+                                <h4 class="box-title">Product's material: </h4>
+                                <br/>
+                                <textarea id="product_material" name="product_material" placeholder="Enter product's material here" rows="1" cols="30"></textarea>
+                            </div>
+                            <div class="col-sm-4">
+                                <h4 class="box-title">Product's source: </h4>
+                                <br/>
+                                <textarea id="product_source" name="product_source" placeholder="Enter product's source here" rows="1" cols="30"></textarea>
+                            </div>
+                            <div class="col-sm-4">
+                                <h4 class="box-title">Product's size: </h4>
+                                <br/>
+                                <textarea id="product_size" name="product_size" placeholder="Enter product's size here" rows="1" cols="30"></textarea>
+                            </div>
+                            <div class="col-sm-4">
+                                <h4 class="box-title">Product's price: </h4>
+                                <br/>
+                                <textarea id="product_price" name="product_price" placeholder="Enter product's price here" rows="1" cols="30"></textarea>
+                            </div>
+                            <div class="col-sm-4">
+                                <h4 class="box-title">Product's quantity: </h4>
+                                <br/>
+                                <textarea id="product_quantity" name="product_quantity" placeholder="Enter product's quantity here" rows="1" cols="30"></textarea>
+                            </div>
+                        </div><!-- /.box-header -->
+
+                        <div class="box-body no-padding">
+                            <div class="box-body no-padding">
+                                <h4 class="box-title">Product's detail: </h4>
+                                <textarea id="product_detail" name="product_detail" placeholder="Enter product's detail here" rows="20" cols="150"></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-default product_submit">Publish this product</button>
+
+                        </div>
+                    </div><!-- /.box -->
+                </div><!-- /.col -->
+                <div class="col-md-3">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">All Categories</h3>
+                        </div><!-- /.box-header -->
+                        <div class="box-body no-padding">
+                            <div>
+                                <select name='cat' id='cat' class='postform' >
+                                    <option value='0'>All categories</option>
+                                    {% for cat in __cates %}
+                                        {% if cat.is_Parent %}
+                                            <option class="filter_category" value="{{ cat.id }}">{{ cat.title }}</option>
+                                            {% for cat2 in __cates %}
+                                                {% if cat2.parent == cat.id %}
+                                                    <option class="filter_category" value="{{ cat2.id }}"> - {{ cat2.title }}</option>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <br/>
+                            <div>
+                                <form action="/admin/category/add" method="post">
+                                    <input type="text" name="category_name" placeholder="Add category name">
+                                    <select name='cat' id='cat' class='postform' >
+                                        <option value='0'>Parent categories</option>
+                                        {% for cat in __cates %}
+                                            {% if cat.is_Parent %}
+                                                <option class="filter_category" value="{{ cat.id }}">{{ cat.title }}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                    <button type="submit" class="button" value="Add new category">Add new category</button>
+                                </form>
+                            </div>
+
+                        </div><!-- /.box-body -->
+                    </div><!-- /.box -->
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">Striped Full Width Table</h3>
+                        </div><!-- /.box-header -->
+                        <div class="box-body no-padding">
+                            <table class="table table-striped">
+                    <tr>
+                      <th style="width: 10px">#</th>
+                      <th>Task</th>
+                      <th>Progress</th>
+                      <th style="width: 40px">Label</th>
+                    </tr>
+                    <tr>
+                      <td>1.</td>
+                      <td>Update software</td>
+                      <td>
+                        <div class="progress progress-xs">
+                          <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+                        </div>
+                      </td>
+                      <td><span class="badge bg-red">55%</span></td>
+                    </tr>
+                    <tr>
+                      <td>2.</td>
+                      <td>Clean database</td>
+                      <td>
+                        <div class="progress progress-xs">
+                          <div class="progress-bar progress-bar-yellow" style="width: 70%"></div>
+                        </div>
+                      </td>
+                      <td><span class="badge bg-yellow">70%</span></td>
+                    </tr>
+                    <tr>
+                      <td>3.</td>
+                      <td>Cron job running</td>
+                      <td>
+                        <div class="progress progress-xs progress-striped active">
+                          <div class="progress-bar progress-bar-primary" style="width: 30%"></div>
+                        </div>
+                      </td>
+                      <td><span class="badge bg-light-blue">30%</span></td>
+                    </tr>
+                    <tr>
+                      <td>4.</td>
+                      <td>Fix and squish bugs</td>
+                      <td>
+                        <div class="progress progress-xs progress-striped active">
+                          <div class="progress-bar progress-bar-success" style="width: 90%"></div>
+                        </div>
+                      </td>
+                      <td><span class="badge bg-green">90%</span></td>
+                    </tr>
+                  </table>
+                        </div><!-- /.box-body -->
+                    </div><!-- /.box -->
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </form>
+    </section><!-- /.content -->
+  </div><!-- /.content-wrapper -->
+{% endblock %}
+
+{% block jsExtends %}
+    <script>    CKEDITOR.replace( 'product_detail' );</script>
+{% endblock %}

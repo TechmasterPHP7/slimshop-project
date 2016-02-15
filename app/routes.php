@@ -42,6 +42,8 @@ $app->get('/search', 'App\Controller\CartController:searchNameItemAction');
 $app->group('/admin', function () use ($app) {
     $app->get('',  'App\Controller\Backend\DashboardController:indexAction');
     $app->get('/login',  'App\Controller\Backend\UserController:loginAction');
+    $app->get('/admin/products', 'App\Controller\Backend\ProductController:indexAction');
+    $app->get('/admin/products/new', 'App\Controller\Backend\ProductController:newProductAction');
 })->add(function ($request, $response, $next) {
     if($_SESSION['user']['role'] == 1) {
         $response = $next($request, $response);
@@ -54,8 +56,14 @@ $app->group('/admin', function () use ($app) {
 
 $app->get('/admin/products', 'App\Controller\Backend\ProductController:indexAction');
 
+$app->get('/admin/products/new', 'App\Controller\Backend\ProductController:newProductAction');
+
+$app->post('/admin/products/add', 'App\Controller\Backend\ProductController:addProductAction');
+
 $app->get('/admin/products/f', 'App\Controller\Backend\ProductController:productCategoryAction');
 
-$app->get('/admin/category/new', 'App\Controller\Backend\CategoryController:viewCheckOutAction');
+$app->get('/admin/category/new', 'App\Controller\Backend\CategoryController:indexAction');
+
+$app->post('/admin/category/add', 'App\Controller\Backend\CategoryController:addCategoryAction');
 
 $app->get('/admin/category/{slug}/page/{page}','App\Controller\Backend\ProductController:productCategoryAction');
