@@ -54,6 +54,8 @@ $app->group('/admin', function () use ($app) {
     }
 });
 
+// Product in backend
+
 $app->get('/admin/products', 'App\Controller\Backend\ProductController:indexAction');
 
 $app->get('/admin/products/new', 'App\Controller\Backend\ProductController:newProductAction');
@@ -62,7 +64,13 @@ $app->post('/admin/products/add', 'App\Controller\Backend\ProductController:addP
 
 $app->get('/admin/products/f', 'App\Controller\Backend\ProductController:productCategoryAction');
 
-$app->get('/admin/category/new', 'App\Controller\Backend\CategoryController:indexAction');
+// Categories in backend
+
+$app->get('/admin/category', 'App\Controller\Backend\CategoryController:indexAction');
+
+$app->post('/admin/category/delete', 'App\Controller\Backend\CategoryController:deleteCategoryAction');
+
+$app->get('/admin/category/new', 'App\Controller\Backend\CategoryController:newCategoryAction');
 
 $app->post('/admin/category/add', 'App\Controller\Backend\CategoryController:addCategoryAction');
 
