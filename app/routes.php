@@ -64,11 +64,13 @@ $app->post('/admin/products/add', 'App\Controller\Backend\ProductController:addP
 
 $app->get('/admin/products/f', 'App\Controller\Backend\ProductController:productCategoryAction');
 
+$app->post('/admin/products/delete', 'App\Controller\Backend\ProductController:deleteProductAction');
+
 // Categories in backend
 
 $app->get('/admin/category', 'App\Controller\Backend\CategoryController:indexAction');
 
-$app->post('/admin/category/delete', 'App\Controller\Backend\CategoryController:deleteCategoryAction');
+$app->post('/admin/category', 'App\Controller\Backend\CategoryController:deleteCategoryAction');
 
 $app->get('/admin/category/new', 'App\Controller\Backend\CategoryController:newCategoryAction');
 

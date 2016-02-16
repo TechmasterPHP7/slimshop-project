@@ -10,7 +10,7 @@
           </h1>
           <ol class="breadcrumb">
             <li><a href="/admin"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li class="active">Simple</li>
+            <li class="active">All products</li>
           </ol>
         </section>
 
@@ -31,14 +31,7 @@
                     <a href="#">Published products<span class="count">(0)</span></a>
                   {% endif %}
                   <br />
-                  <form class="bulk_form" method="get" action="/bulk">
-                    <select name="action" id="bulk-action-selector-top">
-                      <option value="-1">Bulk Actions</option>
-                      <option value="edit" class="hide-if-no-js">Edit</option>
-                      <option value="trash">Move to Trash</option>
-                    </select>
-                    <input type="submit" id="doaction" class="button action" value="Apply"  />
-                  </form>
+
                   <form class="filter_form" method="get" action="/admin/products/f">
                     <select name='cat' id='cat' class='postform' >
                       <option value='0'>All categories</option>
@@ -56,6 +49,12 @@
                     <button type="submit" id="post-query-submit" class="button" value="Filter">Filter</button>
                   </form>
                 </div><!-- /.box-header -->
+                <form class="bulk_form" method="post" action="/admin/products/delete">
+                  <select name="action" id="bulk-action-selector-top">
+                    <option value="-1">Bulk Actions</option>
+                    <option value="trash">Move to Trash</option>
+                  </select>
+                  <input type="submit" id="doaction" class="button action" value="Apply"  />
                 <div class="box-body">
                   <table class="table table-bordered">
                     <thead>
@@ -66,13 +65,14 @@
                         <th>Quantity</th>
                         <th>Feature</th>
                         <th>Publish</th>
+                        <th></th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="table-product">
                     {% if products %}
                       {% for pro in products %}
                         <tr>
-                          <td></td>
+                          <td><input name="check_product[]" type="checkbox" value="{{ pro.id }}"></td>
                           <td>{{ pro.title }}</td>
                           <td>{{ pro.price | number_format ~ " đ" }}</td>
                           <td>{{ pro.quantity }}</td>
@@ -86,19 +86,14 @@
                           {% else %}
                             <td>No</td>
                           {% endif %}
+                          <td><a href="/admin/products/{{ pro.slug }}">Edit</a></td>
                         </tr>
                       {% endfor %}
                     {% endif %}
                     </tbody>
                   </table>
                 </div><!-- /.box-body -->
-                <div class="box-footer clearfix">
-                  <ul class="pagination pagination-sm no-margin pull-right">
-                    {% if cat and cat != '' %}
-                      {{ pager(totalPage,currentPage,'admin/category/' ~ cat.slug ~ '/page/{page}') }}
-                    {% endif %}
-                  </ul>
-                </div>
+                </form>
               </div><!-- /.box -->
           </div><!-- /.row -->
         </section><!-- /.content -->

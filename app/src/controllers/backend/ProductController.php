@@ -68,19 +68,13 @@ class ProductController extends BaseController
 
     public function productCategoryAction(Request $request, Response $response, $args) {
         $id = $request->getParam('cat');
-        $page = (isset($args['page'])) ? $args['page']: 1;
-        $limit = 10;
-        $offset = ($page - 1) * $limit;
+
 
         $dql = "SELECT c FROM App\Model\Categories c WHERE c.id=$id";
         $cat = $this->em->createQuery($dql)
             ->getResult();
         if($cat['isParent'] == false){
             $dql = "SELECT p FROM App\Model\Products p WHERE p.category=$id";
-            $products = $this->em->createQuery($dql)
-                ->setFirstResult($offset)
-                ->setMaxResults($limit)
-                ->getResult();
             $all = $this->em->createQuery($dql)
                 ->getResult();
         } else {
@@ -89,12 +83,7 @@ class ProductController extends BaseController
             foreach($cats as $c){
                 $cid[] =  $c->getId();
             }
-
             $arr = implode(',',$cid);
-            $products = $this->em->createQuery("SELECT p FROM App\Model\Products AS p WHERE p.category IN ($arr)")
-                ->setMaxResults($limit)
-                ->setFirstResult($offset)
-                ->getResult();
             $all = $this->em->this->createQuery("SELECT p FROM App\Model\Products AS p WHERE p.category IN ($arr)")
                 ->getResult();
         }
@@ -105,17 +94,29 @@ class ProductController extends BaseController
             if($item->getPublish()) $publishproducts++;
         }
         $count = count($all);
-        $totalPage = ceil($count/$limit);
 
         $this->view->render($response, 'backend/products/products.html', [
-            'products' => $products,
+            'products' => $all,
             'cat' => $cat,
-            'totalPage' => $totalPage,
-            'currentPage' => $page,
             'total_products' => $count,
             'publish_products' => $publishproducts
         ]);
 
+        return $response;
+    }
+
+    public function deleteproductAction(Request $request, Response $response){
+        if($request->isPost()){
+            $data = $request->getParsedBody();
+
+            if($data['action'] == 'trash'){
+                $args = implode(',',$data['check_product']);
+//                var_dump($args);die;
+                $dql = $this->em->createQuery("DELETE App\Model\Products p WHERE p.id IN ($args)")
+                    ->getResult();
+                $this->view->render($response, 'backend/category/category.html');
+            }
+        };
         return $response;
     }
 
