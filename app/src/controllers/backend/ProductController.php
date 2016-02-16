@@ -24,6 +24,21 @@ class ProductController extends BaseController
         return $this->view->render($response, 'backend/products/new_products.html');
     }
 
+    public function editViewAction(Request $request, Response $response, $args){
+        try {
+            $edit = $this->em->getRepository('App\Model\Products')->findOneBy(['slug' => $args['slug']]);
+
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+            die;
+        }
+
+        $this->view->render($response, 'backend/products/edit_products.html',[
+            'product' => $edit
+        ]);
+        return $response;
+    }
+
     public function addProductAction(Request $request, Response $response){
         if($request->isPost()){
             $data = $request->getParsedBody();

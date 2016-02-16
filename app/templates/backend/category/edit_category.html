@@ -1,0 +1,87 @@
+{% extends 'backend/layout.html' %}
+{% block content %}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper" xmlns="http://www.w3.org/1999/html">
+    <section class="content-header">
+        {% if edit_category %}
+            <h3>
+                The category is edited success!
+                View product in this category <a href="/admin/products/f?cat={{ product.id }}"> here</a>
+            </h3>
+        {% endif %}
+        <h1>
+            Edit category
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="/admin/category">All categories</a></li>
+            <li class="active">Edit Category</li>
+        </ol>
+    </section>
+
+   <!-- Main content -->
+    <section class="content">
+        <form action="/admin/category/edit/{% if category %}{{ category.slug }}{% endif %}" method="post">
+            <div class="row">
+                {% if category %}
+                <div class="box">
+                    <div class="box-body no-padding">
+                        <div class="box-body no-padding">
+                            <h4 class="box-title">Category's title: </h4>
+                            <textarea style="font-size: 15px" id="category_title" name="category_title" rows="3" cols="150">{{ category.title }}</textarea>
+                        </div>
+                        <br/>
+                        <select name='cat' id='cat' class='postform' >
+                            <option>Parent categories</option>
+                            {% for cat in __cates %}
+                                {% if cat.is_Parent %}
+                                    <option class="filter_category" value="{{ cat.id }}">{{ cat.title }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                        <br/>
+                        <button type="submit" style="margin: 10px" class="btn btn-default product_submit">Submit</button>
+
+                    </div>
+                </div><!-- /.box -->
+                {% endif %}
+            </div><!-- /.row -->
+        </form>
+    </section><!-- /.content -->
+    {#{% if edit_category %}#}
+        {#<!-- Main content -->#}
+        {#<section class="content">#}
+            {#<form action="/admin/category/edit?{% if edit_category %}{{ edit_category.slug }}{% endif %}" method="post">#}
+                {#<div class="row">#}
+                    {#{% if edit_category %}#}
+                        {#<div class="box">#}
+                            {#<div class="box-body no-padding">#}
+                                {#<div class="box-body no-padding">#}
+                                    {#<h4 class="box-title">Category's title: </h4>#}
+                                    {#<textarea style="font-size: 15px" id="category_title" name="category_title" rows="3" cols="150">{{ edit_category.title }}</textarea>#}
+                                {#</div>#}
+                                {#<br/>#}
+                                {#<select name='cat' id='cat' class='postform' >#}
+                                    {#<option>Parent categories</option>#}
+                                    {#{% for cat in __cates %}#}
+                                        {#{% if cat.is_Parent %}#}
+                                            {#<option class="filter_category" value="{{ cat.id }}">{{ cat.title }}</option>#}
+                                        {#{% endif %}#}
+                                    {#{% endfor %}#}
+                                {#</select>#}
+                                {#<br/>#}
+                                {#<button type="submit" style="margin: 10px" class="btn btn-default product_submit">Submit</button>#}
+
+                            {#</div>#}
+                        {#</div><!-- /.box -->#}
+                    {#{% endif %}#}
+                {#</div><!-- /.row -->#}
+            {#</form>#}
+        {#</section><!-- /.content -->#}
+    {#{% endif %}#}
+  </div><!-- /.content-wrapper -->
+{% endblock %}
+
+{% block jsExtends %}
+
+{% endblock %}

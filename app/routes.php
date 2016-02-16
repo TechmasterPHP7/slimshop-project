@@ -66,6 +66,8 @@ $app->get('/admin/products/f', 'App\Controller\Backend\ProductController:product
 
 $app->post('/admin/products/delete', 'App\Controller\Backend\ProductController:deleteProductAction');
 
+$app->get('/admin/products/{slug}', 'App\Controller\Backend\ProductController:editViewAction');
+
 // Categories in backend
 
 $app->get('/admin/category', 'App\Controller\Backend\CategoryController:indexAction');
@@ -76,4 +78,6 @@ $app->get('/admin/category/new', 'App\Controller\Backend\CategoryController:newC
 
 $app->post('/admin/category/add', 'App\Controller\Backend\CategoryController:addCategoryAction');
 
-$app->get('/admin/category/{slug}/page/{page}','App\Controller\Backend\ProductController:productCategoryAction');
+$app->get('/admin/category/{slug}', 'App\Controller\Backend\CategoryController:editViewAction');
+
+$app->post('/admin/category/edit/{slug}', 'App\Controller\Backend\CategoryController:editCategoryAction');

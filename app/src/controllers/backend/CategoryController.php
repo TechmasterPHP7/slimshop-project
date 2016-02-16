@@ -19,6 +19,46 @@ class CategoryController extends BaseController
         return $this->view->render($response, 'backend/category/category.html');
     }
 
+    public function editViewAction(Request $request, Response $response, $args){
+        try {
+            $edit = $this->em->getRepository('App\Model\Categories')->findOneBy(['slug' => $args['slug']]);
+
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+            die;
+        }
+
+        $this->view->render($response, 'backend/category/edit_category.html',[
+            'category' => $edit
+        ]);
+        return $response;
+    }
+
+    public function editCategoryAction(Request $request, Response $response, $args){
+        if($request->isPost()){
+            $data = $request->getParsedBody();
+
+            $title = $data['category_title'];
+            $slug = trim($title);
+            $slug = str_replace(' ', '-', $slug);
+            $isParent = false;
+
+            if($data['cat']){
+                $cate_id = $data['cat'];
+            } else {
+                $cate_id = 0;
+                $isParent = true;
+            }
+
+            $arr = implode(',',$args['slug']);
+            $category = $this->em->createQuery("UPDATE App\Model\Categories c SET c.title = ($title), c.slug = ($slug), c.isParent = ($isParent), c.parent = ($cate_id) WHERE c.slug IN ($arr)")
+                ->getResult();
+        }
+        $this->view->render($response, 'backend/category/edit_category.html', [
+            'edit_category' => $category
+        ]);
+    }
+
     public function deleteCategoryAction(Request $request, Response $response){
         if($request->isPost()){
             $data = $request->getParsedBody();
