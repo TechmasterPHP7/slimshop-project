@@ -60,6 +60,10 @@ class CategoryController extends BaseController
     }
 
     public function deleteCategoryAction(Request $request, Response $response){
+        $ids = $request->getParam('ids');
+        var_dump($ids);die;
+
+
         if($request->isPost()){
             $data = $request->getParsedBody();
 
@@ -75,39 +79,42 @@ class CategoryController extends BaseController
     }
 
     public function addCategoryAction(Request $request, Response $response){
-        if($request->isPost()){
-            $data = $request->getParsedBody();
+        $title = $request->getParam('title');
+        $cate_id = $request->getParam('cat');
 
-            if($data['cat']){
-                $cate_id = $data['cat'];
-                $title = $data['category_name'];
+        if(!isset($title) || $title == ''){
+            $flash = [
+                'type' => 'error',
+                'msg' => 'Please enter category name'
+            ];
+        } else {
+            $slug = trim($title);
+            $slug = str_replace(' ', '-', $slug);
 
-                $slug = trim($title);
-                $slug = str_replace(' ', '-', $slug);
+            $category = new Categories();
+            $category->setTitle($title);
+            $category->setSlug($slug);
 
-                $category = new Categories();
-                $category->setTitle($title);
-                $category->setSlug($slug);
+            if($cate_id){
                 $category->setParent($cate_id);
-
                 $this->em->persist($category);
                 $this->em->flush();
             } else {
-                $title = $data['category_name'];
-
-                $slug = trim($title);
-                $slug = str_replace(' ', '-', $slug);
-
-                $category = new Categories();
-                $category->setTitle($title);
-                $category->setSlug($slug);
                 $category->setIsParent(true);
-
                 $this->em->persist($category);
                 $this->em->flush();
-            }
-        }
-        $this->view->render($response, 'backend/category/category.html');
+            };
+
+            $flash = [
+                'type' => 'success',
+                'msg' => 'Add new category successfully'
+            ];
+        };
+
+        $this->view->render($response, 'backend/category/category.html',[
+            'new_category' => $category,
+            'flash' => $flash
+        ]);
         return $response;
     }
 }
